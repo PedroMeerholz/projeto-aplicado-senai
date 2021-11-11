@@ -76,4 +76,85 @@ public class CRUDVeiculo extends Conexao {
             return false;
         } // Fim método try/catch
     } // Fim método readOnly
+
+    // Update
+    public boolean updateModelo(int id, String modelo) {
+        sql = "UPDATE veiculo SET modelo=? WHERE id_veiculo=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, modelo);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+            
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateModelo
+    
+    public boolean updatePlaca(int id, String placa) {
+        sql = "UPDATE veiculo SET placa=? WHERE id_veiculo=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, placa);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+            return false;
+        } // Fim método try/catch
+    } // Fim método updatePlaca
+    
+    public boolean updateAno(int id, String ano) {
+        sql = "UPDATE veiculo SET ano=? WHERE id_veiculo=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, ano);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateAno
+    
+    public boolean updateAutonomia(int id, double autonomia) {
+        sql = "UPDATE veiculo SET autonomia=? WHERE id_veiculo=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setDouble(1, autonomia);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateAutonomia
+    
+    public boolean updateStatus(int id, boolean status) {
+        sql = "UPDATE veiculo SET status=? WHERE id_veiculo=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setBoolean(1, status);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateStatuss
 }
