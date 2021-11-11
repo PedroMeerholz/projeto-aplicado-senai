@@ -52,4 +52,28 @@ public class CRUDVeiculo extends Conexao {
             return false;
         } // Fim try/catch
     } // Fim método read
+
+    public boolean readOnly(int id) {
+        sql = "SELECT * FROM veiculo WHERE id_veiculo=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setInt(1, id);
+            ResultSet resultado = execucaoSQL.executeQuery();
+
+            while(resultado.next()) {
+                System.out.printf("\nid_veiculo: %d", resultado.getInt("id_veiculo"));
+                System.out.printf("\nmodelo: %s", resultado.getString("modelo"));
+                System.out.printf("\nplaca: %s", resultado.getString("placa"));
+                System.out.printf("\nano: %s", resultado.getString("ano"));
+                System.out.printf("\nautonomia: %.2f", resultado.getFloat("autonomia"));
+                System.out.printf("\nstatus: %b", resultado.getBoolean("status"));
+            }
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método readOnly
 }
