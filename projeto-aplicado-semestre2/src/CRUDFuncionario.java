@@ -51,4 +51,27 @@ public class CRUDFuncionario extends Conexao {
             return false;
         } // Fim try/catch
     } // Fim método read
+
+    public boolean readOnly(int id) {
+        sql = "SELECT * FROM funcionario WHERE id_funcionario='"+id+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+
+            while(resultado.next()) {
+                System.out.println(resultado.getInt("id_funcionario"));
+                System.out.println(resultado.getString("nome"));
+                System.out.println(resultado.getString("nascimento"));
+                System.out.println(resultado.getString("cpf"));
+                System.out.println(resultado.getString("cargo"));
+                System.out.println(resultado.getBoolean("status"));
+            }
+            
+            return true;
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+            
+            return false;
+        } // Fim try/catch
+    } // Fim método read
 }
