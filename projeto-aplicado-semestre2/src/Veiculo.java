@@ -7,6 +7,16 @@ public class Veiculo {
     private double autonomia;
     private boolean status;
 
+
+    //Construtor
+    public Veiculo(String modeloVeiculo, String placaVeiculo, String anoVeiculo, double autonomia, boolean status){
+        setModeloVeiculo(modeloVeiculo);
+        setPlacaVeiculo(placaVeiculo);
+        setAnoVeiculo(anoVeiculo);
+        setAutonomia(autonomia);
+        setStatus(status);
+    }
+
     //Métodos
     public int getIDVeiculo(){
         return this.IDVeiculo;
