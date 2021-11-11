@@ -152,4 +152,17 @@ public class CRUDFuncionario extends Conexao {
             return false;
         } // Fim try/catch
     } // Fim método updateStatus
+
+    public boolean delete(int id) {
+        sql = "DELETE FROM funcionario WHERE id_funcionario=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setInt(1, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch (SQLException e) {
+            return false;
+        } // Fim try/catch
+    } // Fim método delete
 }
