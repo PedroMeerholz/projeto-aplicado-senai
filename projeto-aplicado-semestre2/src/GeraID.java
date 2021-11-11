@@ -4,6 +4,7 @@ import java.sql.SQLException;
 public class GeraID extends Conexao {
     private int idFuncionario = 0;
     private int idVeiculo = 0;
+    private int idChamado = 0;
 
     public GeraID() {
 
@@ -55,5 +56,29 @@ public class GeraID extends Conexao {
         this.idVeiculo = id + 1;
 
         return this.idVeiculo;
+    }
+
+    public int atualizaIDChamado() {
+        sql = "SELECT id_chamado FROM chamado ORDER BY id_chamado DESC LIMIT 1";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                this.idChamado = resultado.getInt("id_chamado");
+            }
+            
+            return this.idChamado;
+        } catch(SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int incrementaIdChamado() {
+        int id = atualizaIDChamado();
+        this.idChamado = id + 1;
+
+        return this.idChamado;
     }
 }

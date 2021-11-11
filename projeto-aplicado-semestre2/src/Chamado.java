@@ -1,7 +1,10 @@
+import java.sql.Date;
+import java.time.LocalDate;
+
 public class Chamado {
     //Atributos
     private int IDChamado;
-    private String dataChamado;
+    private Date dataChamado;
     private Funcionario funcionarioAlocado;
     private Veiculo veiculoAlocado;
     private double distancia;
@@ -10,13 +13,21 @@ public class Chamado {
 
     //Contrutor
     public Chamado(String dataChamado, Funcionario funcionarioAlocado, Veiculo veiculoAlocado, boolean status){
-        setDataChamado(dataChamado);
+        setIDChamado();
+        setDataChamado();
         setFuncionarioAlocado(funcionarioAlocado);
         setVeiculoAlocado(veiculoAlocado);
-        setStatus(status);
+        setStatus(true);
     }
 
     // Métodos
+    public void setIDChamado() {
+        GeraID geraID = new GeraID();
+        int id = geraID.incrementaIdChamado();
+
+        this.IDChamado = id;
+    }
+
     public int getIDChamado(){
         return this.IDChamado;
     }
@@ -29,11 +40,12 @@ public class Chamado {
         return this.status;
     }
 
-    public void setDataChamado(String data){
-        this.dataChamado = data;
+    public void setDataChamado(){
+        LocalDate data = LocalDate.now();
+        this.dataChamado = Date.valueOf(data);
     }
 
-    public String getDataChamado(){
+    public Date getDataChamado(){
         return this.dataChamado;
     }
 
