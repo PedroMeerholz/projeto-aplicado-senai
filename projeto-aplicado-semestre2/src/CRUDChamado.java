@@ -72,6 +72,63 @@ public class CRUDChamado extends Conexao {
             erro.printStackTrace();
 
             return false;
-        } // Fim método readOnly
+        } // Fim método try/catch
     } // Fim método readOnly
+
+    // Update
+    public boolean updateStatus(int id, boolean status){
+        sql = "UPDATE chamado SET status='"+status+"' WHERE id_chamado='"+id+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.execute();
+
+            return true;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } 
+
+    public boolean updateFuncionarioAlocado(int idChamado, int idFuncionario) {
+        sql = "UPDATE chamado SET funcionario='"+idFuncionario+"' WHERE id_chamado='"+idChamado+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.execute();
+
+            return true;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateFuncionarioAlocado
+
+    public boolean updateVeiculoAlocado(int idChamado, int idVeiculo) {
+        sql = "UPDATE chamado SET veiculo='"+idVeiculo+"' WHERE id_chamado='"+idChamado+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.execute();
+
+            return true;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateVeiculoAlocado
+
+    public boolean updateDistancia(int id, float distancia) {
+        sql = "UPDATE chamado SET distancia='"+distancia+"' WHERE id_chamado='"+id+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.executeQuery();
+
+            return true;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        } // Fim método try/catch
+    } // Fim método updateDistancia
 } // Fim classe CRUDChamado
