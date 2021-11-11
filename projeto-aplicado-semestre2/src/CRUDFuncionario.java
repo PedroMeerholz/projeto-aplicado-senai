@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CRUDFuncionario extends Conexao {
@@ -22,6 +23,32 @@ public class CRUDFuncionario extends Conexao {
             erro.printStackTrace();
 
             return false;
-        }
-    }
+        }// Fim try/catch
+    } // Fim método create
+
+    public boolean read() {
+        sql = "SELECT * FROM funcionario ORDER BY nome ASC";
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery(); // Responsável por receber os dados de uma pesquisa feita no DB
+            while(resultado.next()) {
+                Funcionario funcionario = new Funcionario(resultado.getString("nome"), resultado.getString("nascimento"), resultado.getString("cpf"), resultado.getString("cargo"), resultado.getBoolean("status"));
+
+                System.out.printf("\n\nID: %d", resultado.getInt("id_funcionario"));
+                System.out.printf("\nNome: %s", funcionario.getNomeFuncionario());
+                System.out.printf("\nNascimento: %s", funcionario.getNascimento());
+                System.out.printf("\nCPF: %s", funcionario.getCPF());
+                System.out.printf("\nCargo: %s", funcionario.getCargo());
+                System.out.printf("\nStatus: %b", funcionario.getStatus());
+            }
+
+            return true;
+        } catch (SQLException e) {
+            // Erro caso haja problemas para se conectar ao banco de dados
+            e.printStackTrace();
+
+            return false;
+        } // Fim try/catch
+    } // Fim método read
 }
