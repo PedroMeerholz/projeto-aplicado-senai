@@ -7,6 +7,15 @@ public class Funcionario{
     private String cargo;
     private boolean status;
 
+    //Construtor
+    public Funcionario(String nome, String nascimento, String cpf, String cargo, boolean status){
+        setNomeFuncionario(nome);
+        setNascimento(nascimento);
+        setCPF(cpf);
+        setCargo(cargo);
+        setStatus(status);
+    }
+
     //Métodos
     public int getIDFuncionario(){
         return this.IDFuncionario;
