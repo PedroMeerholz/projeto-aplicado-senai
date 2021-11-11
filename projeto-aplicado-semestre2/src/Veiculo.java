@@ -1,9 +1,9 @@
 public class Veiculo {
     //Atributos
-    private int IDFuncionario;
-    private String nomeFuncionario;
-    private String nascimento;
-    private String cpf;
-    private String cargo;
+    private int IDVeiculo;
+    private String modeloVeiculo;
+    private String placaVeiculo;
+    private String anoVeiculo;
+    private double autonomia;
     private boolean status;
 }
