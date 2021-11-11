@@ -70,8 +70,86 @@ public class CRUDFuncionario extends Conexao {
             return true;
         } catch (SQLException erro) {
             erro.printStackTrace();
-            
+
             return false;
         } // Fim try/catch
-    } // Fim método read
+    } // Fim método readOnly
+
+    public boolean updateNome(int id, String nome) {
+        sql = "UPDATE funcionario SET nome=? WHERE id_funcionario=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, nome);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+            
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } // Fim try/catch
+    } // Fim método updateNome
+
+    public boolean updateNascimento(int id, String nascimento) {
+        sql = "UPDATE funcionario SET nascimento=? WHERE id_funcionario=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, nascimento);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } // Fim try/catch
+    } // Fim método updateNascimento
+
+    public boolean updateCpf(int id, String cpf) {
+        sql = "UPDATE funcionario SET cpf=? WHERE id_funcionario=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, cpf);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        } // Fim try/catch
+    } // Fim método updateCpf
+
+    public boolean updateCargo(int id, String cargo) {
+        sql = "UPDATE funcionario SET cargo=? WHERE id_funcionario=?";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setString(1, cargo);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        } // Fim try/catch
+    } // Fim método updateCargo
+
+    public boolean updateStatus(int id, boolean status) {
+        sql = "UPDATE funcionario SET status=? WHERE id_funcionario=?";
+
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setBoolean(1, status);
+            execucaoSQL.setInt(2, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } // Fim try/catch
+    } // Fim método updateStatus
 }
