@@ -10,6 +10,7 @@ public class Veiculo {
 
     //Construtor
     public Veiculo(String modeloVeiculo, String placaVeiculo, String anoVeiculo, double autonomia, boolean status){
+        setIDVeiculo();
         setModeloVeiculo(modeloVeiculo);
         setPlacaVeiculo(placaVeiculo);
         setAnoVeiculo(anoVeiculo);
@@ -18,6 +19,12 @@ public class Veiculo {
     }
 
     //Métodos
+    public void setIDVeiculo() {
+        GeraID geraID = new GeraID();
+        int id = geraID.incrementaIdVeiculo();
+        this.IDVeiculo = id;
+    }
+
     public int getIDVeiculo(){
         return this.IDVeiculo;
     }
