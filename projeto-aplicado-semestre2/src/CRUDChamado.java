@@ -131,4 +131,19 @@ public class CRUDChamado extends Conexao {
             return false;
         } // Fim método try/catch
     } // Fim método updateDistancia
+
+    // Delete
+    public boolean delete(int id) {
+        sql = "DELETE chamado WHERE id_chamado='"+id+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.execute();
+
+            return false;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        }
+    }
 } // Fim classe CRUDChamado
