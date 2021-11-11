@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CRUDChamado extends Conexao {
@@ -25,5 +26,52 @@ public class CRUDChamado extends Conexao {
 
             return false;
         } // Fim try/catch
-    } // Fim método create  
+    } // Fim método create
+    
+    // Read
+    public boolean read() {
+        sql = "SELECT * FROM chamado";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                System.out.printf("ID Chamado: %d", resultado.getInt("id_chamado"));
+                System.out.printf("Status: %b", resultado.getBoolean("status"));
+                System.out.printf("Data do Chamado: %s", resultado.getString("data_chamado"));
+                System.out.printf("Funcionario Alocado: %d", resultado.getInt("funcionario"));
+                System.out.printf("Veiculo Alocado: %d", resultado.getInt("veiculo"));
+                System.out.printf("Distância: %.2f", resultado.getFloat("distancia"));
+                System.out.printf("Carbono Gerado: %.2f", resultado.getFloat("carbono"));
+            }
+
+            return true;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        } // Fim try/catch
+    } // Fim método read
+
+    public boolean readOnly(int id) {
+        sql = "SELECT FROM chamado WHERE id_chamado='"+id+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                System.out.printf("ID Chamado: %d", resultado.getInt("id_chamado"));
+                System.out.printf("Status: %b", resultado.getBoolean("status"));
+                System.out.printf("Data do Chamado: %s", resultado.getString("data_chamado"));
+                System.out.printf("Funcionario Alocado: %d", resultado.getInt("funcionario"));
+                System.out.printf("Veiculo Alocado: %d", resultado.getInt("veiculo"));
+                System.out.printf("Distância: %.2f", resultado.getFloat("distancia"));
+                System.out.printf("Carbono Gerado: %.2f", resultado.getFloat("carbono"));
+            }
+
+            return true;
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+
+            return false;
+        } // Fim método readOnly
+    } // Fim método readOnly
 } // Fim classe CRUDChamado
