@@ -8,6 +8,14 @@ public class Chamado {
     private double carbonoEmitido;
     private boolean status;
 
+    //Contrutor
+    public Chamado(String dataChamado, Funcionario funcionarioAlocado, Veiculo veiculoAlocado, boolean status){
+        setDataChamado(dataChamado);
+        setFuncionarioAlocado(funcionarioAlocado);
+        setVeiculoAlocado(veiculoAlocado);
+        setStatus(status);
+    }
+
     // Métodos
     public int getIDChamado(){
         return this.IDChamado;
