@@ -2,7 +2,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GeraID extends Conexao {
-    private int idFuncionario = 1;
+    private int idFuncionario = 0;
 
     public GeraID() {
 
@@ -15,15 +15,13 @@ public class GeraID extends Conexao {
             ResultSet resultado = execucaoSQL.executeQuery();
             while(resultado.next()) {
                 this.idFuncionario = resultado.getInt("id_funcionario");
-                
-                return this.idFuncionario;
             }
 
-            return 90;
+            return this.idFuncionario;
         } catch(SQLException e) {
             e.printStackTrace();
 
-            return 100;
+            return -1;
         }
     }
 

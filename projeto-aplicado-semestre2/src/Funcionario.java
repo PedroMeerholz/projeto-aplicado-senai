@@ -9,6 +9,7 @@ public class Funcionario{
 
     //Construtor
     public Funcionario(String nome, String nascimento, String cpf, String cargo, boolean status){
+        setIDFuncionario();
         setNomeFuncionario(nome);
         setNascimento(nascimento);
         setCPF(cpf);
@@ -17,6 +18,12 @@ public class Funcionario{
     }
 
     //Métodos
+    public void setIDFuncionario() {
+        GeraID geraID = new GeraID();
+        int id = geraID.incrementaIdFuncionario();
+        this.IDFuncionario = id;
+    }
+
     public int getIDFuncionario(){
         return this.IDFuncionario;
     }
