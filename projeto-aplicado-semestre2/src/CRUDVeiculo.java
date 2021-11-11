@@ -156,5 +156,20 @@ public class CRUDVeiculo extends Conexao {
 
             return false;
         } // Fim método try/catch
-    } // Fim método updateStatuss
+    } // Fim método updateStatus
+
+    // Delete
+    public boolean delete(int id) {
+        sql = "DELETE FROM veiculo WHERE id_veiculo=?"; 
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setInt(1, id);
+            execucaoSQL.execute();
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        } // Fim método try/catch
+    } // Fim método delete
 }
