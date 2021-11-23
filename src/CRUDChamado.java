@@ -14,8 +14,8 @@ public class CRUDChamado extends Conexao {
             execucaoSQL.setInt(1, chamado.getIDChamado());
             execucaoSQL.setBoolean(2, chamado.getStatus());
             execucaoSQL.setDate(3, chamado.getDataChamado());
-            execucaoSQL.setInt(4, chamado.getFuncionario().getIDFuncionario());
-            execucaoSQL.setInt(5, chamado.getVeiculoAlocado().getIDVeiculo());
+            execucaoSQL.setInt(4, chamado.getIdFuncionarioAlocado());
+            execucaoSQL.setInt(5, chamado.getIdVeiculoAlocado());
             execucaoSQL.setDouble(6, chamado.getDistancia());
             execucaoSQL.setDouble(7, chamado.getCarbonoEmitido());
             execucaoSQL.execute();

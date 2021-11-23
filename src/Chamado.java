@@ -5,18 +5,17 @@ public class Chamado {
     //Atributos
     private int IDChamado;
     private Date dataChamado;
-    private Funcionario funcionarioAlocado;
-    private Veiculo veiculoAlocado;
+    private int idFuncionarioAlocado;
+    private int idVeiculoAlocado;
     private double distancia;
     private double carbonoEmitido;
     private boolean status;
 
-    //Contrutor
-    public Chamado(String dataChamado, Funcionario funcionarioAlocado, Veiculo veiculoAlocado, boolean status){
+    public Chamado(int idFuncionarioAlocado, int idVeiculoAlocado) {
         setIDChamado();
         setDataChamado();
-        setFuncionarioAlocado(funcionarioAlocado);
-        setVeiculoAlocado(veiculoAlocado);
+        setIdFuncionarioAlocado(idFuncionarioAlocado);
+        setIdVeiculoAlocado(idVeiculoAlocado);
         setStatus(true);
     }
 
@@ -49,20 +48,20 @@ public class Chamado {
         return this.dataChamado;
     }
 
-    public void setFuncionarioAlocado(Funcionario funcionarioAlocado){
-        this.funcionarioAlocado = funcionarioAlocado;
+    public void setIdFuncionarioAlocado(int idFuncionarioAlocado) {
+        this.idFuncionarioAlocado = idFuncionarioAlocado;
     }
 
-    public Funcionario getFuncionario(){
-        return this.funcionarioAlocado;
+    public int getIdFuncionarioAlocado() {
+        return this.idFuncionarioAlocado;
     }
 
-    public void setVeiculoAlocado(Veiculo veiculoAlocado){
-        this.veiculoAlocado = veiculoAlocado;
+    public void setIdVeiculoAlocado(int id) {
+        this.idVeiculoAlocado = id;
     }
 
-    public Veiculo getVeiculoAlocado(){
-        return this.veiculoAlocado;
+    public int getIdVeiculoAlocado() {
+        return this.idVeiculoAlocado;
     }
 
     public void setDistancia(double distancia){
