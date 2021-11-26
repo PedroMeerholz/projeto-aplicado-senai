@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.awt.event.ActionEvent;
 
 public class CadastrarFuncionario implements ActionListener {
@@ -22,10 +23,12 @@ public class CadastrarFuncionario implements ActionListener {
 		return nome;
 	}
 	
-	public String getNascimento() {
+	public Date getNascimento() {
 		String nascimento = txtFieldNascimento.getText();
+
+		Date dataNascimento = Date.valueOf(nascimento);
 		
-		return nascimento;
+		return dataNascimento;
 	}
 	
 	public String getCpf() {
@@ -40,7 +43,7 @@ public class CadastrarFuncionario implements ActionListener {
 		return cargo;
 	}
 
-	public void enviaInformaçoesParaCadastro(String nome, String nascimento, String cpf, String cargo) {
+	public void enviaInformaçoesParaCadastro(String nome, Date nascimento, String cpf, String cargo) {
 		operacoesCadastro.cadastroFuncionario(nome, nascimento, cpf, cargo);
 	}
 
