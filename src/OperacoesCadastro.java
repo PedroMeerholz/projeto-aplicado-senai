@@ -1,6 +1,8 @@
+import java.sql.Date;
+
 public class OperacoesCadastro {
 
-    public void cadastroFuncionario(String nome, String nascimento, String cpf, String cargo) {
+    public void cadastroFuncionario(String nome, Date nascimento, String cpf, String cargo) {
         CRUDFuncionario crudFuncionario = new CRUDFuncionario();
         Funcionario funcionario = new Funcionario(nome, nascimento, cpf, cargo, true);
         crudFuncionario.create(funcionario);
