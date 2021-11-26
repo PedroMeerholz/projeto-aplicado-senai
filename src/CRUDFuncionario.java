@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,7 +13,7 @@ public class CRUDFuncionario extends Conexao {
             execucaoSQL = conexao.prepareStatement(sql); // Responsável por gerenciar e executar o código SQL
             execucaoSQL.setInt(1, funcionario.getIDFuncionario());
             execucaoSQL.setString(2, funcionario.getNomeFuncionario());
-            execucaoSQL.setString(3, funcionario.getNascimento());
+            execucaoSQL.setDate(3, funcionario.getNascimento());
             execucaoSQL.setString(4, funcionario.getCPF());
             execucaoSQL.setString(5, funcionario.getCargo());
             execucaoSQL.setBoolean(6, funcionario.getStatus());
@@ -33,7 +34,7 @@ public class CRUDFuncionario extends Conexao {
             execucaoSQL = conexao.prepareStatement(sql);
             ResultSet resultado = execucaoSQL.executeQuery(); // Responsável por receber os dados de uma pesquisa feita no DB
             while(resultado.next()) {
-                Funcionario funcionario = new Funcionario(resultado.getString("nome"), resultado.getString("nascimento"), resultado.getString("cpf"), resultado.getString("cargo"), resultado.getBoolean("status"));
+                Funcionario funcionario = new Funcionario(resultado.getString("nome"), resultado.getDate("nascimento"), resultado.getString("cpf"), resultado.getString("cargo"), resultado.getBoolean("status"));
 
                 System.out.printf("\n\nID: %d", resultado.getInt("id_funcionario"));
                 System.out.printf("\nNome: %s", funcionario.getNomeFuncionario());
@@ -90,11 +91,11 @@ public class CRUDFuncionario extends Conexao {
         } // Fim try/catch
     } // Fim método updateNome
 
-    public boolean updateNascimento(int id, String nascimento) {
+    public boolean updateNascimento(int id, Date nascimento) {
         sql = "UPDATE funcionario SET nascimento=? WHERE id_funcionario=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
-            execucaoSQL.setString(1, nascimento);
+            execucaoSQL.setDate(1, nascimento);
             execucaoSQL.setInt(2, id);
             execucaoSQL.execute();
 

@@ -1,14 +1,16 @@
+import java.sql.Date;
+
 public class Funcionario{
     //Atributos
     private int IDFuncionario;
     private String nomeFuncionario;
-    private String nascimento;
+    private Date nascimento;
     private String cpf;
     private String cargo;
     private boolean status;
 
     //Construtor
-    public Funcionario(String nome, String nascimento, String cpf, String cargo, boolean status){
+    public Funcionario(String nome, Date nascimento, String cpf, String cargo, boolean status){
         setIDFuncionario();
         setNomeFuncionario(nome);
         setNascimento(nascimento);
@@ -36,11 +38,11 @@ public class Funcionario{
         return this.nomeFuncionario;
     }
 
-    public void setNascimento(String nascimento){
+    public void setNascimento(Date nascimento){
         this.nascimento = nascimento;
     }
 
-    public String getNascimento(){
+    public Date getNascimento(){
         return this.nascimento;
     }
 
