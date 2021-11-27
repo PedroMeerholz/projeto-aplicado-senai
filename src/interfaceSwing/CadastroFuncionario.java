@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import operacoes.OperacoesCadastro;
+import operacoes.GeraID;
 
 import java.sql.Date;
 
@@ -14,29 +15,41 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class CadastroFuncionario extends JFrame {
-    private OperacoesCadastro operacoesCadastro;
+    private OperacoesCadastro operacoesCadastro = new OperacoesCadastro();
+    private GeraID geraID = new GeraID();
+    private String id;
     private JTextField txtFieldNome;
 	private JTextField txtFieldNascimento;
 	private JTextField txtFieldCpf;
 	private JTextField txtFieldCargo;
     private JButton btnCadastrar;
+
     
     public CadastroFuncionario() {
         super("Home");
         setSize(700, 500);
         
+        setIdApresentacao();
         criaFormulario();
         
         setVisible(true);
     }
 
-    public String getNome() {
-		String nome = txtFieldNome.getText();
+    private void setIdApresentacao() {
+        this.id = String.valueOf(geraID.atualizaIDFuncionario() + 1);
+    }
+
+    private String getIdApresentacao() {
+        return this.id;
+    }
+    
+    private String getNome() {
+        String nome = txtFieldNome.getText();
 
 		return nome;
 	}
 	
-	public Date getNascimento() {
+	private Date getNascimento() {
 		String nascimento = txtFieldNascimento.getText();
 
 		Date dataNascimento = Date.valueOf(nascimento);
@@ -44,13 +57,13 @@ public class CadastroFuncionario extends JFrame {
 		return dataNascimento;
 	}
 	
-	public String getCpf() {
+	private String getCpf() {
 		String cpf = txtFieldCpf.getText();
 		
 		return cpf;
 	}
 	
-	public String getCargo() {
+	private String getCargo() {
 		String cargo = txtFieldCargo.getText();
 		
 		return cargo;
@@ -61,7 +74,7 @@ public class CadastroFuncionario extends JFrame {
         componente.setBounds(x, y, largura, 20);
     }
 
-    public void enviaInformaçoesParaCadastro(String nome, Date nascimento, String cpf, String cargo) {
+    private void enviaInformaçoesParaCadastro(String nome, Date nascimento, String cpf, String cargo) {
 		operacoesCadastro.cadastroFuncionario(nome, nascimento, cpf, cargo);
 	}
    
@@ -73,7 +86,7 @@ public class CadastroFuncionario extends JFrame {
         label = new JLabel("Cadastrar Funcionário");
         adicionarComponente(label, 300, 15, 140);
 
-        label = new JLabel("ID:");
+        label = new JLabel("ID: s" + getIdApresentacao());
         adicionarComponente(label, 30, 50, 140);
 
         label = new JLabel("Nome:");
@@ -100,16 +113,9 @@ public class CadastroFuncionario extends JFrame {
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(getNome());
-                System.out.println(getNascimento());
-                System.out.println(getCpf());
-                System.out.println(getCargo());
+                enviaInformaçoesParaCadastro(getNome(), getNascimento(), getCpf(), getCargo());
             }
         });
         adicionarComponente(btnCadastrar, 30, 250, 220);
-    }
-
-    public static void main(String[] args) {
-        CadastroFuncionario frameCriaTela = new CadastroFuncionario();
     }
 }
