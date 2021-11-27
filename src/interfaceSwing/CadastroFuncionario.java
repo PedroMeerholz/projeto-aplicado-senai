@@ -86,7 +86,7 @@ public class CadastroFuncionario extends JFrame {
         label = new JLabel("Cadastrar Funcionário");
         adicionarComponente(label, 300, 15, 140);
 
-        label = new JLabel("ID: s" + getIdApresentacao());
+        label = new JLabel("ID: " + getIdApresentacao());
         adicionarComponente(label, 30, 50, 140);
 
         label = new JLabel("Nome:");
