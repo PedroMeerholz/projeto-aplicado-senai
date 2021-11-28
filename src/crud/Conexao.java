@@ -24,4 +24,12 @@ public class Conexao {
             e.printStackTrace();
         } // Fim try/catch
     }
+
+    public Connection getConexao() {
+        return this.conexao;
+    }
+
+    public PreparedStatement getExecucaoSQL() {
+        return this.execucaoSQL;
+    }
 }
