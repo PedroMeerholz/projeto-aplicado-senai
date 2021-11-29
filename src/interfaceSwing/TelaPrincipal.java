@@ -32,6 +32,7 @@ public class TelaPrincipal extends JFrame {
         setSize(1850, 500);
         setLayout(new GridLayout(1, 3));
         tela();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -165,6 +166,12 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Cadastrar");
         
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AtualizaFuncionario atualizaFuncionario = new AtualizaFuncionario();
+            }
+        });
         adicionaBotao(panelButton, button, "Modificar");
 
         this.button = new JButton();
