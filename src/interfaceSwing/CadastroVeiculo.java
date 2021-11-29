@@ -74,31 +74,28 @@ public class CadastroVeiculo extends JFrame {
 
         JLabel label;
 
-        label = new JLabel("Cadastrar Veiculo");
-        adicionarComponente(label, 300, 15, 140);
-
         label = new JLabel("ID: " + getIdApresentacao());
-        adicionarComponente(label, 30, 50, 140);
+        adicionarComponente(label, 80, 50, 140);
 
         label = new JLabel("Modelo:");
         txtFieldModelo = new JTextField();
-        adicionarComponente(label, 30, 90, 140);
-        adicionarComponente(txtFieldModelo, 80, 90, 140);
+        adicionarComponente(label, 80, 90, 140);
+        adicionarComponente(txtFieldModelo, 130, 90, 140);
 
         label = new JLabel("Placa:");
         txtFieldPlaca = new JTextField();
-        adicionarComponente(label, 30, 130, 140);
-        adicionarComponente(txtFieldPlaca, 70, 130, 150);
+        adicionarComponente(label, 80, 130, 140);
+        adicionarComponente(txtFieldPlaca, 120, 130, 150);
 
         label = new JLabel("Ano:");
         txtFieldAno = new JTextField();
-        adicionarComponente(label, 30, 170, 140);
-        adicionarComponente(txtFieldAno, 60, 170, 160);
+        adicionarComponente(label, 80, 170, 140);
+        adicionarComponente(txtFieldAno, 110, 170, 160);
 
         label = new JLabel("Autonomia:");
         txtFieldAutonomia = new JTextField();
-        adicionarComponente(label, 30, 210, 140);
-        adicionarComponente(txtFieldAutonomia, 100, 210, 120);
+        adicionarComponente(label, 80, 210, 140);
+        adicionarComponente(txtFieldAutonomia, 150, 210, 120);
 
         btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(new ActionListener() {
@@ -107,6 +104,6 @@ public class CadastroVeiculo extends JFrame {
                 operacoesCadastro.cadastroVeiculo(getModelo(), getPlaca(), getAno(), getAutonomia());
             }
         });
-        adicionarComponente(btnCadastrar, 30, 240, 190);
+        adicionarComponente(btnCadastrar, 80, 250, 190);
     }
 }

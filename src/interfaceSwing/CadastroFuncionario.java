@@ -82,32 +82,29 @@ public class CadastroFuncionario extends JFrame {
         setLayout(null);
         
         JLabel label;
-        
-        label = new JLabel("Cadastrar Funcionário");
-        adicionarComponente(label, 300, 15, 140);
 
         label = new JLabel("ID: " + getIdApresentacao());
-        adicionarComponente(label, 30, 50, 140);
+        adicionarComponente(label, 80, 50, 140);
 
         label = new JLabel("Nome:");
         txtFieldNome = new JTextField();
-        adicionarComponente(label, 30, 90, 140);
-        adicionarComponente(txtFieldNome, 70, 90, 180);
+        adicionarComponente(label, 80, 90, 140);
+        adicionarComponente(txtFieldNome, 120, 90, 180);
 
         label = new JLabel("Nascimento:");
         txtFieldNascimento = new JTextField();
-        adicionarComponente(label, 30, 130, 140);
-        adicionarComponente(txtFieldNascimento, 105, 130, 145);
+        adicionarComponente(label, 80, 130, 140);
+        adicionarComponente(txtFieldNascimento, 155, 130, 145);
 
         label = new JLabel("CPF:");
         txtFieldCpf = new JTextField();
-        adicionarComponente(label, 30, 170, 140);
-        adicionarComponente(txtFieldCpf, 60, 170, 190);
+        adicionarComponente(label, 80, 170, 140);
+        adicionarComponente(txtFieldCpf, 110, 170, 190);
 
         label = new JLabel("Cargo:");
         txtFieldCargo = new JTextField();
-        adicionarComponente(label, 30, 210, 140);
-        adicionarComponente(txtFieldCargo, 70, 210, 180);
+        adicionarComponente(label, 80, 210, 140);
+        adicionarComponente(txtFieldCargo, 120, 210, 180);
 
         btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(new ActionListener() {
@@ -116,6 +113,6 @@ public class CadastroFuncionario extends JFrame {
                 enviaInformaçoesParaCadastro(getNome(), getNascimento(), getCpf(), getCargo());
             }
         });
-        adicionarComponente(btnCadastrar, 30, 250, 220);
+        adicionarComponente(btnCadastrar, 80, 250, 220);
     }
 }

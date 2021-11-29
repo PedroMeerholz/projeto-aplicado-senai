@@ -72,24 +72,21 @@ public class CadastroChamado extends JFrame {
 
         JLabel label;
 
-        label = new JLabel("Cadastrar Chamado");
-        adicionarComponente(label, 10, 10, 140);
-
         label = new JLabel("ID Chamado: " + getIdApresentacao());
-        adicionarComponente(label, 30, 50, 140);
+        adicionarComponente(label, 100, 70, 140);
 
         label = new JLabel("Data: " + getDataApresentacao());
-        adicionarComponente(label, 30, 90, 140);
+        adicionarComponente(label, 100, 110, 140);
 
         label = new JLabel("ID do Funcionário: ");
         txtFieldIdFuncionario = new JTextField();
-        adicionarComponente(label, 30, 130, 140);
-        adicionarComponente(txtFieldIdFuncionario, 135, 130, 50);
+        adicionarComponente(label, 100, 150, 140);
+        adicionarComponente(txtFieldIdFuncionario, 205, 150, 50);
 
         label = new JLabel("ID do Veículo: ");
         txtFieldIdVeiculo = new JTextField();
-        adicionarComponente(label, 30, 170, 140);
-        adicionarComponente(txtFieldIdVeiculo, 110, 170, 75);
+        adicionarComponente(label, 100, 190, 140);
+        adicionarComponente(txtFieldIdVeiculo, 180, 190, 75);
 
         btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(new ActionListener() {
@@ -98,6 +95,6 @@ public class CadastroChamado extends JFrame {
                 enviaInformaçoesParaCadastro(getIdFuncionario(), getIdVeiculo());
             }
         });
-        adicionarComponente(btnCadastrar, 30, 210, 155);
+        adicionarComponente(btnCadastrar, 100, 230, 155);
     }
 }
