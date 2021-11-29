@@ -145,8 +145,4 @@ public class AtualizaVeiculo extends JFrame {
         });
         adicionaBotao(this.button, 80, 290, 160, "Modificar");
     }
-
-    public static void main(String[] args) {
-        AtualizaVeiculo atualizaVeiculo = new AtualizaVeiculo();
-    }
 }
