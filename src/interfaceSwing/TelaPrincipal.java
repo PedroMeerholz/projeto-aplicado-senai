@@ -154,11 +154,7 @@ public class TelaPrincipal extends JFrame {
     private void tela() {
         // Painel de Funcionários
         this.panelTable = new JPanel();
-        this.table = new JTable(modelFuncionario);
         this.panelButton = new JPanel();
-        adicionaPainel(panelTable, "Funcionários");
-        adicionaTabelaFuncionario(panelTable, table);
-
         this.button = new JButton();
         this.button.addActionListener(new ActionListener() {
             @Override
@@ -174,15 +170,20 @@ public class TelaPrincipal extends JFrame {
         this.button = new JButton();
         adicionaBotao(panelButton, button, "Excluir");
         adionaPainelBotoes(panelTable);
+
+        this.button = new JButton();
+        adicionaBotao(panelButton, button, "Atualizar Tabela");
+        adionaPainelBotoes(panelTable);
+
+        this.table = new JTable(modelFuncionario);
+        adicionaPainel(panelTable, "Funcionários");
+        adicionaTabelaFuncionario(panelTable, table);
         // Fim painel de Funcionários
 
         // Painel de Veículos
         this.panelTable = new JPanel();
-        this.table = new JTable(modelVeiculo);
+        
         this.panelButton = new JPanel();
-        adicionaPainel(panelTable, "Veículo");
-        adicionaTabelaVeiculo(panelTable, table);
-
         this.button = new JButton();
         this.button.addActionListener(new ActionListener() {
             @Override
@@ -198,15 +199,20 @@ public class TelaPrincipal extends JFrame {
         this.button = new JButton();
         adicionaBotao(panelButton, button, "Excluir");
         adionaPainelBotoes(panelTable);
+
+        this.button = new JButton();
+        adicionaBotao(panelButton, button, "Atualizar Tabela");
+        adionaPainelBotoes(panelTable);
+
+        this.table = new JTable(modelVeiculo);
+        adicionaPainel(panelTable, "Veículo");
+        adicionaTabelaVeiculo(panelTable, table);
         // Fim painel de Veículos
 
         // Painel de Chamados
         this.panelTable = new JPanel();
-        this.table = new JTable(modelChamado);
+        
         this.panelButton = new JPanel();
-        adicionaPainel(panelTable, "Chamados");
-        adicionaTabelaChamado(panelTable, table);
-
         this.button = new JButton();
         this.button.addActionListener(new ActionListener() {
             @Override
@@ -222,6 +228,14 @@ public class TelaPrincipal extends JFrame {
         this.button = new JButton();
         adicionaBotao(panelButton, button, "Excluir");
         adionaPainelBotoes(panelTable);
+
+        this.button = new JButton();
+        adicionaBotao(panelButton, button, "Atualizar Tabela");
+        adionaPainelBotoes(panelTable);
+
+        this.table = new JTable(modelChamado);
+        adicionaPainel(panelTable, "Chamados");
+        adicionaTabelaChamado(panelTable, table);
         // Fim painel de Chamados
     }
 }
