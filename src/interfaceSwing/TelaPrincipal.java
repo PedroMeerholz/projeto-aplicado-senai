@@ -160,6 +160,12 @@ public class TelaPrincipal extends JFrame {
         adicionaTabelaFuncionario(panelTable, table);
 
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+            }
+        });
         adicionaBotao(panelButton, button, "Cadastrar");
         
         this.button = new JButton();
@@ -178,6 +184,12 @@ public class TelaPrincipal extends JFrame {
         adicionaTabelaVeiculo(panelTable, table);
 
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastroVeiculo cadastroVeiculo = new CadastroVeiculo();
+            }
+        });
         adicionaBotao(panelButton, button, "Cadastrar");
         
         this.button = new JButton();
@@ -196,6 +208,12 @@ public class TelaPrincipal extends JFrame {
         adicionaTabelaChamado(panelTable, table);
 
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastroChamado cadastroChamado = new CadastroChamado();
+            }
+        });
         adicionaBotao(panelButton, button, "Cadastrar");
         
         this.button = new JButton();

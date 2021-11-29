@@ -26,7 +26,7 @@ public class CadastroChamado extends JFrame {
 
     public CadastroChamado() {
         super("Cadastro de Chamados");
-        setSize(700, 500);
+        setSize(400, 400);
 
         setIdApresentacao();
         criaFormulario();

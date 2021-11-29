@@ -24,7 +24,7 @@ public class CadastroVeiculo extends JFrame {
 
     public CadastroVeiculo() {
         super("Cadastrar Veículo");
-        setSize(700, 500);
+        setSize(400, 400);
 
         setIdApresentacao();
         criaFormulario();

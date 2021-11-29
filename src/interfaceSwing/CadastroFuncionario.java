@@ -26,8 +26,8 @@ public class CadastroFuncionario extends JFrame {
 
     
     public CadastroFuncionario() {
-        super("Home");
-        setSize(700, 500);
+        super("Cadastrar Funcionário");
+        setSize(400, 400);
         
         setIdApresentacao();
         criaFormulario();
