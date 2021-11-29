@@ -201,6 +201,12 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Cadastrar");
         
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AtualizaVeiculo atualizaVeiculo = new AtualizaVeiculo();
+            }
+        });
         adicionaBotao(panelButton, button, "Modificar");
 
         this.button = new JButton();
