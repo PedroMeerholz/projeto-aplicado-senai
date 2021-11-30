@@ -29,8 +29,8 @@ public class TelaPrincipal extends JFrame {
     
     public TelaPrincipal() {
         super("Projeto Aplicado - 2° Semestre");
-        setSize(1850, 500);
-        setLayout(new GridLayout(1, 3));
+        setSize(1800, 900);
+        setLayout(new GridLayout(2, 2));
         tela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -66,7 +66,7 @@ public class TelaPrincipal extends JFrame {
     private void preencheTabelaFuncionario(JTable table) {
         Connection conexao = conexaoBanco.getConexao();
         PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM funcionario";
+        String sql = "SELECT * FROM funcionario ORDER BY id_funcionario ASC";
 
         try {
             execucaoSQL = conexao.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class TelaPrincipal extends JFrame {
     public void preencheTabelaVeiculo(JTable table) {
         Connection conexao = conexaoBanco.getConexao();
         PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM veiculo";
+        String sql = "SELECT * FROM veiculo ORDER BY id_veiculo ASC";
 
         try {
             execucaoSQL = conexao.prepareStatement(sql);
@@ -133,7 +133,7 @@ public class TelaPrincipal extends JFrame {
     private void preencheTabelaChamado(JTable table) {
         Connection conexao = conexaoBanco.getConexao();
         PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM chamado";
+        String sql = "SELECT * FROM chamado ORDER BY id_chamado ASC";
 
         try {
             execucaoSQL = conexao.prepareStatement(sql);
