@@ -125,7 +125,7 @@ public class CRUDChamado extends Conexao {
         sql = "UPDATE chamado SET distancia='"+distancia+"' WHERE id_chamado='"+id+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
-            execucaoSQL.executeQuery();
+            execucaoSQL.execute();
 
             return true;
         } catch(SQLException erro) {

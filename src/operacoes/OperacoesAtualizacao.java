@@ -1,12 +1,14 @@
 package operacoes;
 import java.sql.Date;
 
+import crud.CRUDChamado;
 import crud.CRUDFuncionario;
 import crud.CRUDVeiculo;
 
 public class OperacoesAtualizacao {
     private CRUDFuncionario crudFuncionario = new CRUDFuncionario();
     private CRUDVeiculo crudVeiculo = new CRUDVeiculo();
+    private CRUDChamado crudChamado = new CRUDChamado();
 
     public void atualizaNomeFuncionario(int id, String nome) {
         crudFuncionario.updateNome(id, nome);
@@ -46,5 +48,13 @@ public class OperacoesAtualizacao {
 
     public void atualizaStatusVeiculo(int id, boolean status) {
         crudVeiculo.updateStatus(id, status);
+    }
+
+    public void atualizaStatusChamado(int id, boolean status) {
+        crudChamado.updateStatus(id, status);
+    }
+
+    public void atualizaDistanciaChamado(int id, float distancia) {
+        crudChamado.updateDistancia(id, distancia);
     }
 }
