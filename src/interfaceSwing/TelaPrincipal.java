@@ -175,8 +175,13 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Modificar");
 
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Exclusao exclusao = new Exclusao();
+            }
+        });
         adicionaBotao(panelButton, button, "Excluir");
-        adionaPainelBotoes(panelTable);
 
         this.button = new JButton();
         adicionaBotao(panelButton, button, "Atualizar Tabela");
@@ -210,8 +215,13 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Modificar");
 
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Exclusao exclusao = new Exclusao();
+            }
+        });
         adicionaBotao(panelButton, button, "Excluir");
-        adionaPainelBotoes(panelTable);
 
         this.button = new JButton();
         adicionaBotao(panelButton, button, "Atualizar Tabela");
@@ -245,8 +255,13 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Modificar");
 
         this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Exclusao exclusao = new Exclusao();
+            }
+        });
         adicionaBotao(panelButton, button, "Excluir");
-        adionaPainelBotoes(panelTable);
 
         this.button = new JButton();
         adicionaBotao(panelButton, button, "Atualizar Tabela");

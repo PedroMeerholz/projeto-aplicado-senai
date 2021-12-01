@@ -137,7 +137,7 @@ public class CRUDChamado extends Conexao {
 
     // Delete
     public boolean delete(int id) {
-        sql = "DELETE chamado WHERE id_chamado='"+id+"'";
+        sql = "DELETE FROM chamado WHERE id_chamado='"+id+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.execute();
