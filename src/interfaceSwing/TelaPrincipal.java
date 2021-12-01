@@ -2,7 +2,9 @@ package interfaceSwing;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -19,8 +21,9 @@ import java.sql.SQLException;
 
 public class TelaPrincipal extends JFrame {
     private JPanel panelTable;
-    private JTable table;
     private JPanel panelButton;
+    private JPanel panelCarbono;
+    private JTable table;
     private JButton button;
     private DefaultTableModel modelFuncionario = new DefaultTableModel();
     private DefaultTableModel modelVeiculo = new DefaultTableModel();
@@ -44,6 +47,22 @@ public class TelaPrincipal extends JFrame {
     private void adionaPainelBotoes(JPanel panelPai) {
         this.panelButton.setLayout(new GridLayout(1, 4));
         panelPai.add(this.panelButton);
+    }
+
+    private void adicionarComponente(JComponent componente, int x, int y, int largura) {
+        componente.setBounds(x, y, largura, 20);
+        add(componente);
+    }
+
+    private void adicionaBotao(JButton button, int x, int y, int largura, String tituloBotao) {
+        button.setText(tituloBotao);
+        adicionarComponente(button, x, y, largura);
+    }
+
+    private void adicionarJLabel(JPanel panel, JLabel label, String titulo, int x, int y, int largura) {
+        label.setText(titulo);
+        label.setBounds(x, y, largura, 20);
+        panel.add(label);
     }
 
     private void adicionaBotao(JPanel panel, JButton button, String tituloBotao) {
@@ -271,5 +290,25 @@ public class TelaPrincipal extends JFrame {
         adicionaPainel(panelTable, "Chamados");
         adicionaTabelaChamado(panelTable, table);
         // Fim painel de Chamados
+
+        // Painel de Informações de Carbono
+        this.panelCarbono = new JPanel();
+        this.panelCarbono.setLayout(null);
+        adicionaPainel(this.panelCarbono, "Informações Carbono");
+
+        JLabel label;
+
+        label = new JLabel();
+        adicionarJLabel(this.panelCarbono, label, "Total de Carbono Emitido:", 80, 60, 150);
+
+        label = new JLabel();
+        adicionarJLabel(this.panelCarbono, label, "Veículo que Mais Emitiu:", 80, 100, 150);
+
+        label = new JLabel();
+        adicionarJLabel(this.panelCarbono, label, "Veículo que Menos Emitiu:", 80, 140, 150);
+
+        label = new JLabel();
+        adicionarJLabel(this.panelCarbono, label, "Carbono por KM:", 80, 180, 120);
+        // Fim painel de Informações de Carbono
     }
 }
