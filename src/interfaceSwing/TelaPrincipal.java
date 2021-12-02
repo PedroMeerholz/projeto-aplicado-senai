@@ -1,174 +1,25 @@
 package interfaceSwing;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import crud.Conexao;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class TelaPrincipal extends JFrame {
-    private JPanel panelTable;
-    private JPanel panelButton;
+public class TelaPrincipal extends AdicionaComponentes {
     private JPanel panelCarbono;
-    private JTable table;
-    private JButton button;
-    private DefaultTableModel modelFuncionario = new DefaultTableModel();
-    private DefaultTableModel modelVeiculo = new DefaultTableModel();
-    private DefaultTableModel modelChamado = new DefaultTableModel();
-    private Conexao conexaoBanco = new Conexao();
     
     public TelaPrincipal() {
-        super("Projeto Aplicado - 2° Semestre");
-        setSize(1800, 900);
+        super();
+        setTitle("Projeto Aplicado - 2° Semestre");
+        setSize(1200, 900);
         setLayout(new GridLayout(2, 2));
         tela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-    }
-
-    private void adicionaPainel(JPanel panel, String tituloBorda) {
-        panel.setBorder(BorderFactory.createTitledBorder(tituloBorda));
-        add(panel);
-    }
-
-    private void adionaPainelBotoes(JPanel panelPai) {
-        this.panelButton.setLayout(new GridLayout(1, 4));
-        panelPai.add(this.panelButton);
-    }
-
-    private void adicionarComponente(JComponent componente, int x, int y, int largura) {
-        componente.setBounds(x, y, largura, 20);
-        add(componente);
-    }
-
-    private void adicionaBotao(JButton button, int x, int y, int largura, String tituloBotao) {
-        button.setText(tituloBotao);
-        adicionarComponente(button, x, y, largura);
-    }
-
-    private void adicionarJLabel(JPanel panel, JLabel label, String titulo, int x, int y, int largura) {
-        label.setText(titulo);
-        label.setBounds(x, y, largura, 20);
-        panel.add(label);
-    }
-
-    private void adicionaBotao(JPanel panel, JButton button, String tituloBotao) {
-        button.setText(tituloBotao);
-        panel.add(button);
-    }
-
-    private void adicionaTabelaFuncionario(JPanel panel, JTable table) {
-        panel.add(table);
-        modelFuncionario.addColumn("ID");
-        modelFuncionario.addColumn("Nome");
-        modelFuncionario.addColumn("Nascimento");
-        modelFuncionario.addColumn("Cpf");
-        modelFuncionario.addColumn("Cargo");
-        modelFuncionario.addColumn("Status");
-        modelFuncionario.addRow(new Object[]{"ID", "Nome", "Nascimento", "CPF", "Cargo", "Status"});
-        preencheTabelaFuncionario(table);
-    }
-
-    private void preencheTabelaFuncionario(JTable table) {
-        Connection conexao = conexaoBanco.getConexao();
-        PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM funcionario ORDER BY id_funcionario ASC";
-
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                modelFuncionario.addRow(new Object[]{resultado.getInt("id_funcionario"),
-                                          resultado.getString("nome"),
-                                          resultado.getDate("nascimento"),
-                                          resultado.getString("cpf"),
-                                          resultado.getString("cargo"),
-                                          resultado.getBoolean("status")});   
-            }
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-        }
-    }
-
-    private void adicionaTabelaVeiculo(JPanel panel, JTable table) {
-        panel.add(table);
-        modelVeiculo.addColumn("ID");
-        modelVeiculo.addColumn("Modelo");
-        modelVeiculo.addColumn("Placa");
-        modelVeiculo.addColumn("Ano");
-        modelVeiculo.addColumn("Autonomia");
-        modelVeiculo.addColumn("Status");
-        modelVeiculo.addRow(new Object[]{"ID", "Modelo", "Placa", "Ano", "Autonomia", "Status"});
-        preencheTabelaVeiculo(table);
-    }
-
-    public void preencheTabelaVeiculo(JTable table) {
-        Connection conexao = conexaoBanco.getConexao();
-        PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM veiculo ORDER BY id_veiculo ASC";
-
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                modelVeiculo.addRow(new Object[]{resultado.getInt("id_veiculo"),
-                                          resultado.getString("modelo"),
-                                          resultado.getString("placa"),
-                                          resultado.getString("ano"),
-                                          resultado.getFloat("autonomia"),
-                                          resultado.getBoolean("status")});   
-            }
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-        }
-    }
-
-    private void adicionaTabelaChamado(JPanel panel, JTable table) {
-        panel.add(table);
-        modelChamado.addColumn("ID");
-        modelChamado.addColumn("Status");
-        modelChamado.addColumn("Data");
-        modelChamado.addColumn("Funcionario");
-        modelChamado.addColumn("Veiculo");
-        modelChamado.addColumn("Distância");
-        modelChamado.addColumn("Carbono");
-        modelChamado.addRow(new Object[]{"ID", "Status", "Data", "Funcionario", "Veiculo", "Distância", "Carbono"});
-        preencheTabelaChamado(table);
-    }
-
-    private void preencheTabelaChamado(JTable table) {
-        Connection conexao = conexaoBanco.getConexao();
-        PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM chamado ORDER BY id_chamado ASC";
-
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                modelChamado.addRow(new Object[]{resultado.getInt("id_chamado"),
-                                          resultado.getBoolean("status"),
-                                          resultado.getDate("data_chamado"),
-                                          resultado.getString("funcionario"),
-                                          resultado.getString("veiculo"),
-                                          resultado.getFloat("distancia"),
-                                          resultado.getFloat("carbono")});   
-            }
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-        }
     }
 
     private void tela() {
@@ -203,12 +54,15 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Excluir");
 
         this.button = new JButton();
-        adicionaBotao(panelButton, button, "Atualizar Tabela");
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConsultaFuncionario consultaFuncionario = new ConsultaFuncionario();
+            }
+        });
+        adicionaBotao(panelButton, button, "Consultar");
         adionaPainelBotoes(panelTable);
-
-        this.table = new JTable(modelFuncionario);
         adicionaPainel(panelTable, "Funcionários");
-        adicionaTabelaFuncionario(panelTable, table);
         // Fim painel de Funcionários
 
         // Painel de Veículos
@@ -243,12 +97,15 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Excluir");
 
         this.button = new JButton();
-        adicionaBotao(panelButton, button, "Atualizar Tabela");
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConsultaVeiculo consultaVeiculo = new ConsultaVeiculo();
+            }
+        });
+        adicionaBotao(panelButton, button, "Consultar");
         adionaPainelBotoes(panelTable);
-
-        this.table = new JTable(modelVeiculo);
         adicionaPainel(panelTable, "Veículo");
-        adicionaTabelaVeiculo(panelTable, table);
         // Fim painel de Veículos
 
         // Painel de Chamados
@@ -283,12 +140,15 @@ public class TelaPrincipal extends JFrame {
         adicionaBotao(panelButton, button, "Excluir");
 
         this.button = new JButton();
-        adicionaBotao(panelButton, button, "Atualizar Tabela");
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConsultaChamado consultaChamado = new ConsultaChamado();
+            }
+        });
+        adicionaBotao(panelButton, button, "Consultar");
         adionaPainelBotoes(panelTable);
-
-        this.table = new JTable(modelChamado);
         adicionaPainel(panelTable, "Chamados");
-        adicionaTabelaChamado(panelTable, table);
         // Fim painel de Chamados
 
         // Painel de Informações de Carbono
