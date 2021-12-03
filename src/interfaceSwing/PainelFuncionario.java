@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +14,6 @@ public class PainelFuncionario extends JPanel {
 
     public PainelFuncionario() {
         super();
-        setBorder(BorderFactory.createTitledBorder("Funcionário"));
         setLayout(null);
         formulario();
     }
@@ -44,7 +42,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+                new CadastroFuncionario();
             }
         });
         adicionaBotao(button, "Cadastrar");
@@ -53,7 +51,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AtualizaFuncionario atualizaFuncionario = new AtualizaFuncionario();
+                new AtualizaFuncionario();
             }
         });
         adicionaBotao(button, "Modificar");
@@ -62,7 +60,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Exclusao exclusao = new Exclusao();
+                new Exclusao();
             }
         });
         adicionaBotao(button, "Excluir");
@@ -71,7 +69,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsultaFuncionario consultaFuncionario = new ConsultaFuncionario();
+                new ConsultaFuncionario();
             }
         });
         adicionaBotao(button, "Consultar");
@@ -79,12 +77,12 @@ public class PainelFuncionario extends JPanel {
         JLabel label;
         
         label = new JLabel();
-        adicionarJLabel(label, "Total de Veículos:", 80, 100, 150);
+        adicionarJLabel(label, "Total de Funcionários:", 80, 100, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículos Disponíveis:", 80, 140, 150);
+        adicionarJLabel(label, "Funcionários Disponíveis:", 80, 140, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículos Indisponíveis:", 80, 180, 150);
+        adicionarJLabel(label, "Funcionários Indisponíveis:", 80, 180, 170);
     }   
 }

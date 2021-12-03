@@ -1,16 +1,11 @@
 package interfaceSwing;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import java.awt.GridLayout;
 
 public class PainelCarbono extends JPanel {
     public PainelCarbono() {
         super();
-        setBorder(BorderFactory.createTitledBorder("Chamados"));
         setLayout(null);
         formulario();
     }

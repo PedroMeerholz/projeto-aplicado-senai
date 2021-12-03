@@ -9,7 +9,7 @@ public class TelaInicial extends JFrame {
     public TelaInicial() {
         super();
         setTitle("Início");
-        setSize(400, 400);
+        setSize(800, 750);
         menu();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -28,9 +28,5 @@ public class TelaInicial extends JFrame {
         this.tabbedPane.addTab("Veículo", new PainelVeiculo());
         this.tabbedPane.addTab("Chamado", new PainelChamado());
         this.tabbedPane.add("Carbono", new PainelCarbono());
-    }
-
-    public static void main(String[] args) {
-        new TelaInicial();
     }
 }

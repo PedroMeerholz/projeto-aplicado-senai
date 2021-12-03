@@ -1,6 +1,5 @@
 package interfaceSwing;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +14,6 @@ public class PainelVeiculo extends JPanel {
 
     public PainelVeiculo() {
         super();
-        setBorder(BorderFactory.createTitledBorder("Veículos"));
         setLayout(null);
         formulario();
     }
@@ -44,7 +42,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CadastroVeiculo cadastroVeiculo = new CadastroVeiculo();
+                new CadastroVeiculo();
             }
         });
         adicionaBotao(button, "Cadastrar");
@@ -53,7 +51,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AtualizaVeiculo atualizaVeiculo = new AtualizaVeiculo();
+                new AtualizaVeiculo();
             }
         });
         adicionaBotao(button, "Modificar");
@@ -62,7 +60,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Exclusao exclusao = new Exclusao();
+                new Exclusao();
             }
         });
         adicionaBotao(button, "Excluir");
@@ -71,7 +69,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsultaVeiculo consultaVeiculo = new ConsultaVeiculo();
+                new ConsultaVeiculo();
             }
         });
         adicionaBotao(button, "Consultar");
@@ -85,6 +83,6 @@ public class PainelVeiculo extends JPanel {
         adicionarJLabel(label, "Veículos Disponíveis:", 80, 140, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículos Indisponíveis", 80, 180, 150);
+        adicionarJLabel(label, "Veículos Indisponíveis:", 80, 180, 150);
     }
 }

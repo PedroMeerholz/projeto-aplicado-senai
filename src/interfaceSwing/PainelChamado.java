@@ -1,6 +1,5 @@
 package interfaceSwing;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +14,6 @@ public class PainelChamado extends JPanel {
 
     public PainelChamado() {
         super();
-        setBorder(BorderFactory.createTitledBorder("Chamados"));
         setLayout(null);
         formulario();
     }
@@ -44,7 +42,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CadastroChamado cadastroChamado = new CadastroChamado();
+                new CadastroChamado();
             }
         });
         adicionaBotao(button, "Cadastrar");
@@ -53,7 +51,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AtualizaChamado atualizaChamado = new AtualizaChamado();
+                new AtualizaChamado();
             }
         });
         adicionaBotao(button, "Modificar");
@@ -62,7 +60,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Exclusao exclusao = new Exclusao();
+                new Exclusao();
             }
         });
         adicionaBotao(button, "Excluir");
@@ -71,7 +69,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsultaChamado consultaChamado = new ConsultaChamado();
+                new ConsultaChamado();
             }
         });
         adicionaBotao(button, "Consultar");
