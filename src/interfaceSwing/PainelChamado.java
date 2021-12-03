@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import operacoes.OperacoesVisualizacao;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,7 @@ import java.awt.event.ActionEvent;
 public class PainelChamado extends JPanel {
     private JButton button;
     private JPanel panelButton;
+    private OperacoesVisualizacao operacoesVisualizacao = new OperacoesVisualizacao();
 
     public PainelChamado() {
         super();
@@ -77,12 +80,12 @@ public class PainelChamado extends JPanel {
         JLabel label;
 
         label = new JLabel();
-        adicionarJLabel(label, "Total de Chamados:", 80, 100, 150);
+        adicionarJLabel(label, "Total de Chamados: " + operacoesVisualizacao.getNumeroDeChamados(), 80, 100, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Chamados Abertos:", 80, 140, 150);
+        adicionarJLabel(label, "Chamados Abertos: " + operacoesVisualizacao.getChamadosDisponiveis(), 80, 140, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Chamados Fechados:", 80, 180, 150);
+        adicionarJLabel(label, "Chamados Fechados: " + operacoesVisualizacao.getChamadosIndisponiveis(), 80, 180, 150);
     }
 }

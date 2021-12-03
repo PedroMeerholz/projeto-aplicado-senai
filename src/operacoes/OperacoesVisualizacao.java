@@ -119,4 +119,61 @@ public class OperacoesVisualizacao extends Conexao {
             return -1;
         }
     }
+
+    public int getNumeroDeChamados() {
+        sql = "SELECT * FROM chamado";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getChamadosDisponiveis() {
+        sql = "SELECT * FROM chamado WHERE status = true";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getChamadosIndisponiveis() {
+        sql = "SELECT * FROM chamado WHERE status = false";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
 }
