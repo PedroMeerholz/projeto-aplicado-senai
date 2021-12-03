@@ -54,6 +54,139 @@ public class CRUDChamado extends Conexao {
         } // Fim try/catch
     } // Fim método read
 
+    public int getNumeroDeChamados() {
+        sql = "SELECT * FROM chamado";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getChamadosDisponiveis() {
+        sql = "SELECT * FROM chamado WHERE status = true";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getChamadosIndisponiveis() {
+        sql = "SELECT * FROM chamado WHERE status = false";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public float getCarbonoEmitido() {
+        sql = "SELECT SUM(carbono) FROM chamado";
+        float carbonoTotal = 0;
+
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                carbonoTotal = resultado.getFloat("sum");
+            }
+
+            return carbonoTotal;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getMaiorEmissor() {
+        sql = "SELECT veiculo, MAX(carbono) AS emissoes FROM chamado GROUP BY veiculo ORDER BY emissoes DESC LIMIT 1";
+        int veiculo = -1;
+
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                veiculo = resultado.getInt("veiculo");
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
+        return veiculo;
+    }
+
+    public int getMenorEmissor() {
+        sql = "SELECT veiculo, MAX(carbono) AS emissoes FROM chamado GROUP BY veiculo ORDER BY emissoes ASC LIMIT 1";
+        int veiculo = -1;
+
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                veiculo = resultado.getInt("veiculo");
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
+        return veiculo;
+    }
+
+    public float getDistanciaTotal() {
+        sql = "SELECT SUM(distancia) FROM chamado;";
+        int veiculo = -1;
+
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                veiculo = resultado.getInt("veiculo");
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
+        return veiculo;
+    }
+
     // Update
     public boolean updateStatus(int id, boolean status){
         sql = "UPDATE chamado SET status='"+status+"' WHERE id_chamado='"+id+"'";

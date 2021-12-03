@@ -56,28 +56,62 @@ public class CRUDFuncionario extends Conexao {
         } // Fim try/catch
     } // Fim método read
 
-    public boolean readOnly(int id) {
-        sql = "SELECT * FROM funcionario WHERE id_funcionario='"+id+"'";
-        try {
+    public int getNumeroDeFuncionarios() {
+        sql = "SELECT * FROM funcionario ORDER BY nome ASC";
+        int i = 0;
+        
+        try{
             execucaoSQL = conexao.prepareStatement(sql);
             ResultSet resultado = execucaoSQL.executeQuery();
-
             while(resultado.next()) {
-                System.out.println(resultado.getInt("id_funcionario"));
-                System.out.println(resultado.getString("nome"));
-                System.out.println(resultado.getString("nascimento"));
-                System.out.println(resultado.getString("cpf"));
-                System.out.println(resultado.getString("cargo"));
-                System.out.println(resultado.getBoolean("status"));
+                i++;
             }
-            
-            return true;
-        } catch (SQLException erro) {
-            erro.printStackTrace();
 
-            return false;
-        } // Fim try/catch
-    } // Fim método readOnly
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getFuncionariosDisponiveis() {
+        sql = "SELECT * FROM funcionario WHERE status = true";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getFuncionarioIndisponiveis() {
+        sql = "SELECT * FROM funcionario WHERE status = false";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
 
     public boolean updateNome(int id, String nome) {
         sql = "UPDATE funcionario SET nome=? WHERE id_funcionario=?";

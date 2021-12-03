@@ -3,11 +3,16 @@ package interfaceSwing;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import crud.*;
+
 public class PainelCarbono extends JPanel {
+
+    private CRUDChamado crudChamado = new CRUDChamado();
+
     public PainelCarbono() {
         super();
         setLayout(null);
-        formulario();
+        informacoes();
     }
 
     public void adicionarJLabel(JLabel label, String titulo, int x, int y, int largura) {
@@ -16,19 +21,16 @@ public class PainelCarbono extends JPanel {
         add(label);
     }
 
-    public void formulario() {
+    public void informacoes() {
         JLabel label;
 
         label = new JLabel();
-        adicionarJLabel(label, "Total de Carbono Emitido:", 80, 100, 150);
+        adicionarJLabel(label, "Total de Carbono Emitido: " + crudChamado.getCarbonoEmitido(), 80, 100, 180);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículo que Mais Emitiu:", 80, 140, 150);
+        adicionarJLabel(label, "Veículo(ID) que Mais Emitiu Carbono: " + crudChamado.getMaiorEmissor(), 80, 140, 220);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículo que Menos Emitiu:", 80, 180, 150);
-
-        label = new JLabel();
-        adicionarJLabel(label, "Carbono por KM:", 80, 220, 120);
+        adicionarJLabel(label, "Veículo(ID) que Menos Emitiu Carbono: " + crudChamado.getMenorEmissor(), 80, 180, 240);
     }
 }

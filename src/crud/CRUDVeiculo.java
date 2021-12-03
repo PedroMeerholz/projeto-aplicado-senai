@@ -76,6 +76,63 @@ public class CRUDVeiculo extends Conexao {
         } // Fim método try/catch
     } // Fim método readOnly
 
+    public int getNumeroDeVeiculos() {
+        sql = "SELECT * FROM veiculo";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getVeiculosDisponiveis() {
+        sql = "SELECT * FROM veiculo WHERE status = true";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getVeiculosIndisponiveis() {
+        sql = "SELECT * FROM veiculo WHERE status = false";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
     // Update
     public boolean updateModelo(int id, String modelo) {
         sql = "UPDATE veiculo SET modelo=? WHERE id_veiculo=?";

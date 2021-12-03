@@ -8,12 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import operacoes.OperacoesVisualizacao;
+import crud.CRUDFuncionario;
 
 public class PainelFuncionario extends JPanel {
     private JButton button;
     private JPanel panelButton;
-    private OperacoesVisualizacao operacoesVisualizacao = new OperacoesVisualizacao();
+    private CRUDFuncionario crudFuncionario= new CRUDFuncionario();
+
 
     public PainelFuncionario() {
         super();
@@ -80,12 +81,12 @@ public class PainelFuncionario extends JPanel {
         JLabel label;
         
         label = new JLabel();
-        adicionarJLabel(label, "Total de Funcionários: " + operacoesVisualizacao.getNumeroDeFuncionarios(), 80, 100, 150);
+        adicionarJLabel(label, "Total de Funcionários: " + crudFuncionario.getNumeroDeFuncionarios(), 80, 100, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Funcionários Disponíveis: " + operacoesVisualizacao.getFuncionariosDisponiveis(), 80, 140, 170);
+        adicionarJLabel(label, "Funcionários Disponíveis: " + crudFuncionario.getFuncionariosDisponiveis(), 80, 140, 170);
 
         label = new JLabel();
-        adicionarJLabel(label, "Funcionários Indisponíveis: " + operacoesVisualizacao.getFuncionarioIndisponiveis(), 80, 180, 170);
+        adicionarJLabel(label, "Funcionários Indisponíveis: " + crudFuncionario.getFuncionarioIndisponiveis(), 80, 180, 170);
     }   
 }

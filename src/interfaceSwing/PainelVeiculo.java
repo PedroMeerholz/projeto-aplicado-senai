@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import operacoes.OperacoesVisualizacao;
+import crud.CRUDVeiculo;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 public class PainelVeiculo extends JPanel {
     private JButton button;
     private JPanel panelButton;
-    private OperacoesVisualizacao operacoesVisualizacao = new OperacoesVisualizacao();
+    private CRUDVeiculo crudVeiculo = new CRUDVeiculo();
 
     public PainelVeiculo() {
         super();
@@ -80,12 +80,12 @@ public class PainelVeiculo extends JPanel {
         JLabel label;
         
         label = new JLabel();
-        adicionarJLabel(label, "Total de Veículos: " + operacoesVisualizacao.getNumeroDeVeiculos(), 80, 100, 150);
+        adicionarJLabel(label, "Total de Veículos: " + crudVeiculo.getNumeroDeVeiculos(), 80, 100, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículos Disponíveis: " + operacoesVisualizacao.getVeiculosDisponiveis(), 80, 140, 170);
+        adicionarJLabel(label, "Veículos Disponíveis: " + crudVeiculo.getVeiculosDisponiveis(), 80, 140, 170);
 
         label = new JLabel();
-        adicionarJLabel(label, "Veículos Indisponíveis: " + operacoesVisualizacao.getVeiculosIndisponiveis(), 80, 180, 170);
+        adicionarJLabel(label, "Veículos Indisponíveis: " + crudVeiculo.getVeiculosIndisponiveis(), 80, 180, 170);
     }
 }
