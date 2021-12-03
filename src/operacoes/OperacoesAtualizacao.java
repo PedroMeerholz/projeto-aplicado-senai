@@ -56,5 +56,11 @@ public class OperacoesAtualizacao {
 
     public void atualizaDistanciaChamado(int id, float distancia) {
         crudChamado.updateDistancia(id, distancia);
+        atualizaCarbonoChamado(id, distancia);
+    }
+
+    public void atualizaCarbonoChamado(int id, float distancia) {
+        float autonomia = crudVeiculo.readAutonomia(id);
+        crudChamado.updateCarbono(id, distancia, autonomia);
     }
 }

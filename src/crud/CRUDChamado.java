@@ -11,7 +11,7 @@ public class CRUDChamado extends Conexao {
 
     // Create
     public boolean create(Chamado chamado) {
-        sql = "INSERT INTO chamado (id_chamado, status, data_chamado, funcionario, veiculo, distancia, carbono) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO chamado (id_chamado, status, data_chamado, funcionario, veiculo, distancia) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setInt(1, chamado.getIDChamado());
@@ -20,7 +20,6 @@ public class CRUDChamado extends Conexao {
             execucaoSQL.setInt(4, chamado.getIdFuncionarioAlocado());
             execucaoSQL.setInt(5, chamado.getIdVeiculoAlocado());
             execucaoSQL.setDouble(6, chamado.getDistancia());
-            execucaoSQL.setDouble(7, chamado.getCarbonoEmitido());
             execucaoSQL.execute();
 
             return true;
@@ -54,29 +53,6 @@ public class CRUDChamado extends Conexao {
             return false;
         } // Fim try/catch
     } // Fim método read
-
-    public boolean readOnly(int id) {
-        sql = "SELECT FROM chamado WHERE id_chamado='"+id+"'";
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                System.out.printf("ID Chamado: %d", resultado.getInt("id_chamado"));
-                System.out.printf("Status: %b", resultado.getBoolean("status"));
-                System.out.printf("Data do Chamado: %s", resultado.getString("data_chamado"));
-                System.out.printf("Funcionario Alocado: %d", resultado.getInt("funcionario"));
-                System.out.printf("Veiculo Alocado: %d", resultado.getInt("veiculo"));
-                System.out.printf("Distância: %.2f", resultado.getFloat("distancia"));
-                System.out.printf("Carbono Gerado: %.2f", resultado.getFloat("carbono"));
-            }
-
-            return true;
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-
-            return false;
-        } // Fim método try/catch
-    } // Fim método readOnly
 
     // Update
     public boolean updateStatus(int id, boolean status){
@@ -134,6 +110,18 @@ public class CRUDChamado extends Conexao {
             return false;
         } // Fim método try/catch
     } // Fim método updateDistancia
+
+    public void updateCarbono(int id, double distancia, float autonomia) {
+        double consumoGasolina = distancia / autonomia;
+        double emissao = consumoGasolina * 0.73 * 0.75 * 3.7;
+        sql = "UPDATE chamado SET carbono='"+emissao+"' WHERE id_chamado='"+id+"'";
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.execute();
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+        }
+    }
 
     // Delete
     public boolean delete(int id) {

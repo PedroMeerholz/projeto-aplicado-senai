@@ -12,7 +12,6 @@ public class Chamado {
     private int idFuncionarioAlocado;
     private int idVeiculoAlocado;
     private double distancia;
-    private double carbonoEmitido;
     private boolean status;
 
     public Chamado(int idFuncionarioAlocado, int idVeiculoAlocado) {
@@ -76,18 +75,4 @@ public class Chamado {
         return this.distancia;
     }
 
-    public void setCarbonoEmitido(double distancia, double autonomia){
-        //Fórmula para calcular a emissão de carbono
-            //CG * 0.73 * 0.75 * 3.7 = CO2(kg)
-        //Consumo de Gasolina
-           //Distância dividivo por autonomia
-
-        double consumoGasolina = distancia / autonomia;
-        double emissao = consumoGasolina * 0.73 * 0.75 * 3.7;
-        this.carbonoEmitido = emissao;
-    }
-
-    public double getCarbonoEmitido(){
-        return this.carbonoEmitido;
-    }
 }

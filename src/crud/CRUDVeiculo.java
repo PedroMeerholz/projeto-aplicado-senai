@@ -56,27 +56,23 @@ public class CRUDVeiculo extends Conexao {
         } // Fim try/catch
     } // Fim método read
 
-    public boolean readOnly(int id) {
+    public float readAutonomia(int id) {
         sql = "SELECT * FROM veiculo WHERE id_veiculo=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setInt(1, id);
             ResultSet resultado = execucaoSQL.executeQuery();
+            float autonomia = 0;
 
             while(resultado.next()) {
-                System.out.printf("\nid_veiculo: %d", resultado.getInt("id_veiculo"));
-                System.out.printf("\nmodelo: %s", resultado.getString("modelo"));
-                System.out.printf("\nplaca: %s", resultado.getString("placa"));
-                System.out.printf("\nano: %s", resultado.getString("ano"));
-                System.out.printf("\nautonomia: %.2f", resultado.getFloat("autonomia"));
-                System.out.printf("\nstatus: %b", resultado.getBoolean("status"));
+                autonomia = resultado.getFloat("autonomia");
             }
 
-            return true;
+            return autonomia;
         } catch(SQLException e) {
             e.printStackTrace();
 
-            return false;
+            return -1;
         } // Fim método try/catch
     } // Fim método readOnly
 
