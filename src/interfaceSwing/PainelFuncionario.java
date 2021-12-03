@@ -83,7 +83,7 @@ public class PainelFuncionario extends JPanel {
         adicionarJLabel(label, "Total de Funcionários: " + operacoesVisualizacao.getNumeroDeFuncionarios(), 80, 100, 150);
 
         label = new JLabel();
-        adicionarJLabel(label, "Funcionários Disponíveis: " + operacoesVisualizacao.getFuncionariosDisponiveis(), 80, 140, 150);
+        adicionarJLabel(label, "Funcionários Disponíveis: " + operacoesVisualizacao.getFuncionariosDisponiveis(), 80, 140, 170);
 
         label = new JLabel();
         adicionarJLabel(label, "Funcionários Indisponíveis: " + operacoesVisualizacao.getFuncionarioIndisponiveis(), 80, 180, 170);

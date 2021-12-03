@@ -26,7 +26,7 @@ public class OperacoesVisualizacao extends Conexao {
     }
 
     public int getFuncionariosDisponiveis() {
-        sql = "SELECT * FROM funcionario WHERE status = true ORDER BY nome ASC";
+        sql = "SELECT * FROM funcionario WHERE status = true";
         int i = 0;
         
         try{
@@ -45,7 +45,7 @@ public class OperacoesVisualizacao extends Conexao {
     }
 
     public int getFuncionarioIndisponiveis() {
-        sql = "SELECT * FROM funcionario WHERE status = false ORDER BY nome ASC";
+        sql = "SELECT * FROM funcionario WHERE status = false";
         int i = 0;
         
         try{
@@ -63,7 +63,60 @@ public class OperacoesVisualizacao extends Conexao {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new OperacoesVisualizacao().getFuncionarioIndisponiveis());
+    public int getNumeroDeVeiculos() {
+        sql = "SELECT * FROM veiculo";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getVeiculosDisponiveis() {
+        sql = "SELECT * FROM veiculo WHERE status = true";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
+    }
+
+    public int getVeiculosIndisponiveis() {
+        sql = "SELECT * FROM veiculo WHERE status = false";
+        int i = 0;
+        
+        try{
+            execucaoSQL = conexao.prepareStatement(sql);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                i++;
+            }
+
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return -1;
+        }
     }
 }
