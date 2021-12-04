@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 public class PainelVeiculo extends JPanel {
     private JButton button;
     private JPanel panelButton;
+    private JLabel labelTotalVeiculos;
+    private JLabel labelVeiculosDisponiveis;
+    private JLabel labelVeiculosIndisponiveis;
     private CRUDVeiculo crudVeiculo = new CRUDVeiculo();
 
     public PainelVeiculo() {
@@ -26,10 +29,16 @@ public class PainelVeiculo extends JPanel {
         panelButton.add(button);
     }
 
+    public void adicionaBotao(JButton button, String tituloBotao, int x, int y, int largura) {
+        button.setText(tituloBotao);
+        button.setBounds(x, y, largura, 30);
+        add(button);
+    }
+
     public void adicionaPainelBotoes() {
         this.panelButton = new JPanel();
         this.panelButton.setLayout(new GridLayout(1, 4));
-        this.panelButton.setBounds(110, 40, 375, 30);
+        this.panelButton.setBounds(250, 100, 375, 30);
         add(this.panelButton);
     }
 
@@ -77,15 +86,24 @@ public class PainelVeiculo extends JPanel {
         });
         adicionaBotao(button, "Consultar");
 
-        JLabel label;
-        
-        label = new JLabel();
-        adicionarJLabel(label, "Total de Veículos: " + crudVeiculo.getNumeroDeVeiculos(), 80, 100, 150);
+        this.labelTotalVeiculos = new JLabel();
+        adicionarJLabel(this.labelTotalVeiculos, "Total de Veículos: " + crudVeiculo.getNumeroDeVeiculos(), 345, 240, 150);
 
-        label = new JLabel();
-        adicionarJLabel(label, "Veículos Disponíveis: " + crudVeiculo.getVeiculosDisponiveis(), 80, 140, 170);
+        this.labelVeiculosDisponiveis = new JLabel();
+        adicionarJLabel(this.labelVeiculosDisponiveis, "Veículos Disponíveis: " + crudVeiculo.getVeiculosDisponiveis(), 345, 280, 170);
 
-        label = new JLabel();
-        adicionarJLabel(label, "Veículos Indisponíveis: " + crudVeiculo.getVeiculosIndisponiveis(), 80, 180, 170);
+        this.labelVeiculosIndisponiveis = new JLabel();
+        adicionarJLabel(this.labelVeiculosIndisponiveis, "Veículos Indisponíveis: " + crudVeiculo.getVeiculosIndisponiveis(), 345, 320, 170);
+    
+        this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                labelTotalVeiculos.setText("Total de Veículos: " + crudVeiculo.getNumeroDeVeiculos());
+                labelVeiculosDisponiveis.setText("Veículos Disponíveis: " + crudVeiculo.getVeiculosDisponiveis());
+                labelVeiculosIndisponiveis.setText("Veículos Indisponíveis: " + crudVeiculo.getVeiculosIndisponiveis());
+            }
+        });
+        adicionaBotao(this.button, "Atualizar Informações", 345, 360, 170);
     }
 }

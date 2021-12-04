@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 public class PainelChamado extends JPanel {
     private JButton button;
     private JPanel panelButton;
+    private JLabel labelTotalChamados;
+    private JLabel labelChamadosAbertos;
+    private JLabel labelChamadosFechados;
     private CRUDChamado crudChamado = new CRUDChamado();
 
     public PainelChamado() {
@@ -24,13 +27,19 @@ public class PainelChamado extends JPanel {
     public void adicionaPainelBotoes() {
         this.panelButton = new JPanel();
         this.panelButton.setLayout(new GridLayout(1, 4));
-        this.panelButton.setBounds(110, 40, 375, 30);
+        this.panelButton.setBounds(250, 100, 375, 30);
         add(this.panelButton);
     }
 
     public void adicionaBotao(JButton button, String tituloBotao) {
         button.setText(tituloBotao);
         panelButton.add(button);
+    }
+
+    public void adicionaBotao(JButton button, String tituloBotao, int x, int y, int largura) {
+        button.setText(tituloBotao);
+        button.setBounds(x, y, largura, 30);
+        add(button);
     }
 
     public void adicionarJLabel(JLabel label, String titulo, int x, int y, int largura) {
@@ -77,15 +86,24 @@ public class PainelChamado extends JPanel {
         });
         adicionaBotao(button, "Consultar");
 
-        JLabel label;
+        this.labelTotalChamados = new JLabel();
+        adicionarJLabel(this.labelTotalChamados, "Total de Chamados: " + crudChamado.getNumeroDeChamados(), 345, 240, 150);
 
-        label = new JLabel();
-        adicionarJLabel(label, "Total de Chamados: " + crudChamado.getNumeroDeChamados(), 80, 100, 150);
+        this.labelChamadosAbertos = new JLabel();
+        adicionarJLabel(this.labelChamadosAbertos, "Chamados Abertos: " + crudChamado.getChamadosDisponiveis(), 345, 280, 170);
 
-        label = new JLabel();
-        adicionarJLabel(label, "Chamados Abertos: " + crudChamado.getChamadosDisponiveis(), 80, 140, 150);
-
-        label = new JLabel();
-        adicionarJLabel(label, "Chamados Fechados: " + crudChamado.getChamadosIndisponiveis(), 80, 180, 150);
+        this.labelChamadosFechados = new JLabel();
+        adicionarJLabel(this.labelChamadosFechados, "Chamados Fechados: " + crudChamado.getChamadosIndisponiveis(), 345, 320, 170);
+    
+        this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                labelTotalChamados.setText("Total de Chamados: " + crudChamado.getNumeroDeChamados());
+                labelChamadosAbertos.setText("Chamados Abertos: " + crudChamado.getChamadosDisponiveis());
+                labelChamadosFechados.setText("Chamados Fechados: " + crudChamado.getChamadosIndisponiveis());
+            }
+        });
+        adicionaBotao(this.button, "Atualizar Informações", 345, 360, 170);
     }
 }

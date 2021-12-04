@@ -13,6 +13,9 @@ import crud.CRUDFuncionario;
 public class PainelFuncionario extends JPanel {
     private JButton button;
     private JPanel panelButton;
+    private JLabel labelTotalFuncionarios;
+    private JLabel labelFuncionariosDisponiveis;
+    private JLabel labelFuncionariosIndisponiveis;
     private CRUDFuncionario crudFuncionario= new CRUDFuncionario();
 
 
@@ -27,10 +30,16 @@ public class PainelFuncionario extends JPanel {
         panelButton.add(button);
     }
 
+    public void adicionaBotao(JButton button, String tituloBotao, int x, int y, int largura) {
+        button.setText(tituloBotao);
+        button.setBounds(x, y, largura, 30);
+        add(button);
+    }
+
     public void adicionaPainelBotoes() {
         this.panelButton = new JPanel();
         this.panelButton.setLayout(new GridLayout(1, 4));
-        this.panelButton.setBounds(110, 40, 375, 30);
+        this.panelButton.setBounds(250, 100, 375, 30);
         add(this.panelButton);
     }
 
@@ -77,16 +86,25 @@ public class PainelFuncionario extends JPanel {
             }
         });
         adicionaBotao(button, "Consultar");
-
-        JLabel label;
         
-        label = new JLabel();
-        adicionarJLabel(label, "Total de Funcionários: " + crudFuncionario.getNumeroDeFuncionarios(), 80, 100, 150);
+        this.labelTotalFuncionarios = new JLabel();
+        adicionarJLabel(this.labelTotalFuncionarios, "Total de Funcionários: " + crudFuncionario.getNumeroDeFuncionarios(), 345, 240, 150);
 
-        label = new JLabel();
-        adicionarJLabel(label, "Funcionários Disponíveis: " + crudFuncionario.getFuncionariosDisponiveis(), 80, 140, 170);
+        this.labelFuncionariosDisponiveis = new JLabel();
+        adicionarJLabel(this.labelFuncionariosDisponiveis, "Funcionários Disponíveis: " + crudFuncionario.getFuncionariosDisponiveis(), 345, 280, 170);
 
-        label = new JLabel();
-        adicionarJLabel(label, "Funcionários Indisponíveis: " + crudFuncionario.getFuncionarioIndisponiveis(), 80, 180, 170);
+        this.labelFuncionariosIndisponiveis = new JLabel();
+        adicionarJLabel(this.labelFuncionariosIndisponiveis, "Funcionários Indisponíveis: " + crudFuncionario.getFuncionarioIndisponiveis(), 345, 320, 170);
+
+        this.button = new JButton();
+        this.button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                labelTotalFuncionarios.setText("Total de Funcionários: " + crudFuncionario.getNumeroDeFuncionarios());
+                labelFuncionariosDisponiveis.setText("Funcionários Disponíveis: " + crudFuncionario.getFuncionariosDisponiveis());
+                labelFuncionariosIndisponiveis.setText("Funcionários Indisponíveis: " + crudFuncionario.getFuncionarioIndisponiveis());
+            }
+        });
+        adicionaBotao(this.button, "Atualizar Informações", 345, 360, 170);
     }   
 }

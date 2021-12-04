@@ -9,7 +9,7 @@ public class TelaInicial extends JFrame {
     public TelaInicial() {
         super();
         setTitle("Início");
-        setSize(800, 750);
+        setSize(900, 700);
         menu();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
