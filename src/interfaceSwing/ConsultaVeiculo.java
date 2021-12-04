@@ -1,62 +1,33 @@
 package interfaceSwing;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
-public class ConsultaVeiculo extends AdicionaComponentes {
-    private DefaultTableModel modelVeiculo = new DefaultTableModel();
+import crud.CRUDVeiculo;
+
+public class ConsultaVeiculo extends JFrame {
+    private JPanel panelTable;
+    private JTable table;
+    private CRUDVeiculo crudVeiculo = new CRUDVeiculo();
 
     public ConsultaVeiculo() {
         super();
         setTitle("Consultar Veículo");
         setSize(600, 600);
-        formulario();
+        apresentaTabela();
         setVisible(true);
     }
 
-    public void adicionaTabelaVeiculo(JPanel panel, JTable table) {
-        panel.add(table);
-        modelVeiculo.addColumn("ID");
-        modelVeiculo.addColumn("Modelo");
-        modelVeiculo.addColumn("Placa");
-        modelVeiculo.addColumn("Ano");
-        modelVeiculo.addColumn("Autonomia");
-        modelVeiculo.addColumn("Status");
-        modelVeiculo.addRow(new Object[]{"ID", "Modelo", "Placa", "Ano", "Autonomia", "Status"});
-        preencheTabelaVeiculo(table);
+    public void adicionaPainel(JPanel panel, String tituloBorda) {
+        panel.setBorder(BorderFactory.createTitledBorder(tituloBorda));
+        add(panel);
     }
 
-    public void preencheTabelaVeiculo(JTable table) {
-        Connection conexao = conexaoBanco.getConexao();
-        PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM veiculo ORDER BY id_veiculo ASC";
-
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                modelVeiculo.addRow(new Object[]{resultado.getInt("id_veiculo"),
-                                          resultado.getString("modelo"),
-                                          resultado.getString("placa"),
-                                          resultado.getString("ano"),
-                                          resultado.getFloat("autonomia"),
-                                          resultado.getBoolean("status")});   
-            }
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-        }
-    }
-
-    private void formulario() {
+    private void apresentaTabela() {
         this.panelTable = new JPanel();
-        this.table = new JTable(modelVeiculo);
         adicionaPainel(panelTable, "Veículo");
-        adicionaTabelaVeiculo(panelTable, table);
+        crudVeiculo.adicionaTabelaVeiculo(panelTable, table);
     }
 }

@@ -2,9 +2,15 @@ package crud;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import classes.Chamado;
 
 public class CRUDChamado extends Conexao {
+    private DefaultTableModel modelChamado = new DefaultTableModel();
+    
     public CRUDChamado() {
         super();
     }
@@ -31,27 +37,37 @@ public class CRUDChamado extends Conexao {
     } // Fim método create
     
     // Read
-    public boolean read() {
-        sql = "SELECT * FROM chamado";
+    public void adicionaTabelaChamado(JPanel panel, JTable table) {
+        table = new JTable(modelChamado);
+        panel.add(table);
+        modelChamado.addColumn("ID");
+        modelChamado.addColumn("Status");
+        modelChamado.addColumn("Data");
+        modelChamado.addColumn("Funcionario");
+        modelChamado.addColumn("Veiculo");
+        modelChamado.addColumn("Distância");
+        modelChamado.addColumn("Carbono");
+        modelChamado.addRow(new Object[]{"ID", "Data", "Funcionario", "Placa Veiculo", "Distância", "Carbono", "Status"});
+        read(table);
+    }
+
+    public void read(JTable table) {
+        sql = "SELECT id_chamado, data_chamado, nome, placa, distancia, carbono, chamado.status FROM funcionario JOIN chamado ON chamado.funcionario = funcionario.id_funcionario JOIN veiculo ON veiculo.id_veiculo = chamado.veiculo";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             ResultSet resultado = execucaoSQL.executeQuery();
             while(resultado.next()) {
-                System.out.printf("ID Chamado: %d", resultado.getInt("id_chamado"));
-                System.out.printf("Status: %b", resultado.getBoolean("status"));
-                System.out.printf("Data do Chamado: %s", resultado.getString("data_chamado"));
-                System.out.printf("Funcionario Alocado: %d", resultado.getInt("funcionario"));
-                System.out.printf("Veiculo Alocado: %d", resultado.getInt("veiculo"));
-                System.out.printf("Distância: %.2f", resultado.getFloat("distancia"));
-                System.out.printf("Carbono Gerado: %.2f", resultado.getFloat("carbono"));
+                modelChamado.addRow(new Object[]{resultado.getInt("id_chamado"),
+                                                 resultado.getDate("data_chamado"),
+                                                 resultado.getString("nome"),
+                                                 resultado.getString("placa"),
+                                                 resultado.getFloat("distancia"),
+                                                 resultado.getFloat("carbono"),
+                                                 resultado.getBoolean("status")});
             }
-
-            return true;
         } catch(SQLException erro) {
             erro.printStackTrace();
-
-            return false;
-        } // Fim try/catch
+        }
     } // Fim método read
 
     public int getNumeroDeChamados() {
@@ -186,6 +202,7 @@ public class CRUDChamado extends Conexao {
 
         return veiculo;
     }
+
 
     // Update
     public boolean updateStatus(int id, boolean status){

@@ -3,9 +3,15 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import classes.Funcionario;
 
 public class CRUDFuncionario extends Conexao {
+    private DefaultTableModel modelFuncionario = new DefaultTableModel();
+
     public CRUDFuncionario() {
         super();
     }
@@ -30,30 +36,36 @@ public class CRUDFuncionario extends Conexao {
         }// Fim try/catch
     } // Fim método create
 
-    public boolean read() {
+    public void adicionaTabelaFuncionario(JPanel panel, JTable table) {
+        table = new JTable(modelFuncionario);
+        panel.add(table);
+        modelFuncionario.addColumn("ID");
+        modelFuncionario.addColumn("Nome");
+        modelFuncionario.addColumn("Nascimento");
+        modelFuncionario.addColumn("Cpf");
+        modelFuncionario.addColumn("Cargo");
+        modelFuncionario.addColumn("Status");
+        modelFuncionario.addRow(new Object[]{"ID", "Nome", "Nascimento", "CPF", "Cargo", "Status"});
+        read(table);
+    }
+
+    public void read(JTable table) {
         sql = "SELECT * FROM funcionario ORDER BY nome ASC";
         
-        try{
+        try {
             execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery(); // Responsável por receber os dados de uma pesquisa feita no DB
+            ResultSet resultado = execucaoSQL.executeQuery();
             while(resultado.next()) {
-                Funcionario funcionario = new Funcionario(resultado.getString("nome"), resultado.getDate("nascimento"), resultado.getString("cpf"), resultado.getString("cargo"), resultado.getBoolean("status"));
-
-                System.out.printf("\n\nID: %d", resultado.getInt("id_funcionario"));
-                System.out.printf("\nNome: %s", funcionario.getNomeFuncionario());
-                System.out.printf("\nNascimento: %s", funcionario.getNascimento());
-                System.out.printf("\nCPF: %s", funcionario.getCPF());
-                System.out.printf("\nCargo: %s", funcionario.getCargo());
-                System.out.printf("\nStatus: %b", funcionario.getStatus());
+                modelFuncionario.addRow(new Object[]{resultado.getInt("id_funcionario"),
+                                          resultado.getString("nome"),
+                                          resultado.getDate("nascimento"),
+                                          resultado.getString("cpf"),
+                                          resultado.getString("cargo"),
+                                          resultado.getBoolean("status")});   
             }
-
-            return true;
-        } catch (SQLException e) {
-            // Erro caso haja problemas para se conectar ao banco de dados
-            e.printStackTrace();
-
-            return false;
-        } // Fim try/catch
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+        }
     } // Fim método read
 
     public int getNumeroDeFuncionarios() {

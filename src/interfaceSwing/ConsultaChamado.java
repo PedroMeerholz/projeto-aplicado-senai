@@ -1,64 +1,33 @@
 package interfaceSwing;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
-public class ConsultaChamado extends AdicionaComponentes {
-    protected DefaultTableModel modelChamado = new DefaultTableModel();
+import crud.CRUDChamado;
+
+public class ConsultaChamado extends JFrame {
+    private JPanel panelTable;
+    private JTable table;
+    private CRUDChamado crudChamado = new CRUDChamado();
 
     public ConsultaChamado() {
         super();
         setTitle("Consultar Chamados");
         setSize(600, 600);
-        formulario();
+        apresentaTabela();
         setVisible(true);
     }
 
-    public void adicionaTabelaChamado(JPanel panel, JTable table) {
-        panel.add(table);
-        modelChamado.addColumn("ID");
-        modelChamado.addColumn("Status");
-        modelChamado.addColumn("Data");
-        modelChamado.addColumn("Funcionario");
-        modelChamado.addColumn("Veiculo");
-        modelChamado.addColumn("Distância");
-        modelChamado.addColumn("Carbono");
-        modelChamado.addRow(new Object[]{"ID", "Status", "Data", "Funcionario", "Veiculo", "Distância", "Carbono"});
-        preencheTabelaChamado(table);
+    public void adicionaPainel(JPanel panel, String tituloBorda) {
+        panel.setBorder(BorderFactory.createTitledBorder(tituloBorda));
+        add(panel);
     }
-
-    public void preencheTabelaChamado(JTable table) {
-        Connection conexao = conexaoBanco.getConexao();
-        PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM chamado ORDER BY id_chamado ASC";
-
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                modelChamado.addRow(new Object[]{resultado.getInt("id_chamado"),
-                                          resultado.getBoolean("status"),
-                                          resultado.getDate("data_chamado"),
-                                          resultado.getString("funcionario"),
-                                          resultado.getString("veiculo"),
-                                          resultado.getFloat("distancia"),
-                                          resultado.getFloat("carbono")});   
-            }
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-        }
-    }
-
-    public void formulario() {
+    
+    public void apresentaTabela() {
         this.panelTable = new JPanel();
-        this.table = new JTable(modelChamado);
         adicionaPainel(panelTable, "Chamados");
-        adicionaTabelaChamado(panelTable, table);
+        crudChamado.adicionaTabelaChamado(panelTable, table);
     }
 }

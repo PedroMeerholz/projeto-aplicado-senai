@@ -2,9 +2,15 @@ package crud;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import classes.Veiculo;
 
 public class CRUDVeiculo extends Conexao {
+    private DefaultTableModel modelVeiculo = new DefaultTableModel();
+    
     public CRUDVeiculo() {
         super();
     }
@@ -31,29 +37,36 @@ public class CRUDVeiculo extends Conexao {
     } // Fim método create
 
     // Read
-    public boolean read() {
+    public void adicionaTabelaVeiculo(JPanel panel, JTable table) {
+        table = new JTable(modelVeiculo);
+        panel.add(table);
+        modelVeiculo.addColumn("ID");
+        modelVeiculo.addColumn("Modelo");
+        modelVeiculo.addColumn("Placa");
+        modelVeiculo.addColumn("Ano");
+        modelVeiculo.addColumn("Autonomia");
+        modelVeiculo.addColumn("Status");
+        modelVeiculo.addRow(new Object[]{"ID", "Modelo", "Placa", "Ano", "Autonomia", "Status"});
+        read();
+    }
+
+    public void read() {
         sql = "SELECT * FROM veiculo ORDER BY modelo ASC";
         
-        try{
+        try {
             execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery(); // Responsável por receber os dados de uma pesquisa feita no DB
+            ResultSet resultado = execucaoSQL.executeQuery();
             while(resultado.next()) {
-                Veiculo veiculo = new Veiculo(resultado.getString("modelo"), resultado.getString("placa"), resultado.getString("ano"), resultado.getDouble("autonomia"), resultado.getBoolean("status"));
-
-                System.out.printf("\n\nID: %d", resultado.getInt("id_veiculo"));
-                System.out.printf("\nModelo: %s", veiculo.getModeloVeiculo());
-                System.out.printf("\nPlaca: %s", veiculo.getPlacaVeiculo());
-                System.out.printf("\nAno: %s", veiculo.getAnoVeiculo());
-                System.out.printf("\nAutonomia: %.2f", veiculo.getAutonomia());
-                System.out.printf("\nStatus: %b", veiculo.getStatus());
+                modelVeiculo.addRow(new Object[]{resultado.getInt("id_veiculo"),
+                                          resultado.getString("modelo"),
+                                          resultado.getString("placa"),
+                                          resultado.getString("ano"),
+                                          resultado.getFloat("autonomia"),
+                                          resultado.getBoolean("status")});   
             }
-
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-            return false;
-        } // Fim try/catch
+        } catch(SQLException erro) {
+            erro.printStackTrace();
+        }
     } // Fim método read
 
     public float readAutonomia(int id) {

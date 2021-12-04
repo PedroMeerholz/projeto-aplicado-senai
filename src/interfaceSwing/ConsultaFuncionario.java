@@ -1,62 +1,33 @@
 package interfaceSwing;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
-public class ConsultaFuncionario extends AdicionaComponentes {
-    protected DefaultTableModel modelFuncionario = new DefaultTableModel();
+import crud.CRUDFuncionario;
+
+public class ConsultaFuncionario extends JFrame {
+    private JPanel panelTable;
+    private JTable table;
+    private CRUDFuncionario crudFuncionario = new CRUDFuncionario();
 
     public ConsultaFuncionario() {
         super();
         setTitle("Consultar Funcionários");
         setSize(600, 600);
-        formulario();
+        apresentaTabela();
         setVisible(true);
     }
 
-    public void adicionaTabelaFuncionario(JPanel panel, JTable table) {
-        panel.add(table);
-        modelFuncionario.addColumn("ID");
-        modelFuncionario.addColumn("Nome");
-        modelFuncionario.addColumn("Nascimento");
-        modelFuncionario.addColumn("Cpf");
-        modelFuncionario.addColumn("Cargo");
-        modelFuncionario.addColumn("Status");
-        modelFuncionario.addRow(new Object[]{"ID", "Nome", "Nascimento", "CPF", "Cargo", "Status"});
-        preencheTabelaFuncionario(table);
+    public void adicionaPainel(JPanel panel, String tituloBorda) {
+        panel.setBorder(BorderFactory.createTitledBorder(tituloBorda));
+        add(panel);
     }
 
-    public void preencheTabelaFuncionario(JTable table) {
-        Connection conexao = conexaoBanco.getConexao();
-        PreparedStatement execucaoSQL = conexaoBanco.getExecucaoSQL();
-        String sql = "SELECT * FROM funcionario ORDER BY id_funcionario ASC";
-
-        try {
-            execucaoSQL = conexao.prepareStatement(sql);
-            ResultSet resultado = execucaoSQL.executeQuery();
-            while(resultado.next()) {
-                modelFuncionario.addRow(new Object[]{resultado.getInt("id_funcionario"),
-                                          resultado.getString("nome"),
-                                          resultado.getDate("nascimento"),
-                                          resultado.getString("cpf"),
-                                          resultado.getString("cargo"),
-                                          resultado.getBoolean("status")});   
-            }
-        } catch(SQLException erro) {
-            erro.printStackTrace();
-        }
-    }
-
-    private void formulario() {
+    private void apresentaTabela() {
         this.panelTable = new JPanel();
-        this.table = new JTable(modelFuncionario);
         adicionaPainel(panelTable, "Funcionários");
-        adicionaTabelaFuncionario(panelTable, table);
+        crudFuncionario.adicionaTabelaFuncionario(panelTable, table);
     }
 }
