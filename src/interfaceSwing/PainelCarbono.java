@@ -36,7 +36,7 @@ public class PainelCarbono extends JPanel {
 
     public void informacoes() {
         this.labelTotalCarbono = new JLabel();
-        adicionarJLabel(this.labelTotalCarbono, "Total de Carbono Emitido(Kg): " + crudChamado.getCarbonoEmitido(), 345, 240, 200);
+        adicionarJLabel(this.labelTotalCarbono, "Total de Carbono Emitido(Kg): " + crudChamado.getCarbonoEmitido(), 345, 240, 350);
 
         this.labelMaiorEmissor = new JLabel();
         adicionarJLabel(this.labelMaiorEmissor, "Veículo(ID) que Mais Emitiu Carbono: " + crudChamado.getMaiorEmissor(), 345, 280, 250);
@@ -48,7 +48,7 @@ public class PainelCarbono extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                labelTotalCarbono.setText("Total de Carbono Emitido: " + crudChamado.getCarbonoEmitido());
+                labelTotalCarbono.setText("Total de Carbono Emitido(Kg): " + crudChamado.getCarbonoEmitido());
                 labelMaiorEmissor.setText("Veículo(ID) que Mais Emitiu Carbono: " + crudChamado.getMaiorEmissor());
                 labelMenorEmissor.setText("Veículo(ID) que Menos Emitiu Carbono: " + crudChamado.getMenorEmissor());
             }

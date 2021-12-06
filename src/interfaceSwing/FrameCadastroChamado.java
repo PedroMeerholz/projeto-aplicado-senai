@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CadastroChamado extends JFrame {
+public class FrameCadastroChamado extends JFrame {
     private String id;
     private LocalDate data = LocalDate.now();
 	private JTextField txtFieldIdFuncionario;
@@ -24,7 +24,7 @@ public class CadastroChamado extends JFrame {
 	private OperacoesCadastro operacoesCadastro = new OperacoesCadastro();
     private GeraID geraID = new GeraID();
 
-    public CadastroChamado() {
+    public FrameCadastroChamado() {
         super("Cadastro de Chamados");
         setSize(400, 400);
 

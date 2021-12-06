@@ -14,7 +14,7 @@ import java.sql.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CadastroFuncionario extends JFrame {
+public class FrameCadastroFuncionario extends JFrame {
     private OperacoesCadastro operacoesCadastro = new OperacoesCadastro();
     private GeraID geraID = new GeraID();
     private String id;
@@ -25,7 +25,7 @@ public class CadastroFuncionario extends JFrame {
     private JButton btnCadastrar;
 
     
-    public CadastroFuncionario() {
+    public FrameCadastroFuncionario() {
         super("Cadastrar Funcionário");
         setSize(400, 400);
         

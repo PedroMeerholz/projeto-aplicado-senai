@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import operacoes.OperacoesExclusao;
 
-public class Exclusao extends JFrame {
+public class FrameExclusao extends JFrame {
     private JTextField txtFieldId;
     private ButtonGroup buttonGroup;
 	private JRadioButton radioBtnFuncionario;
@@ -22,7 +22,7 @@ public class Exclusao extends JFrame {
     private JButton button;
     private OperacoesExclusao operacoesExclusao = new OperacoesExclusao();
 
-    public Exclusao() {
+    public FrameExclusao() {
         super("Exclusão");
         setSize(350, 300);
         setLayout(null);

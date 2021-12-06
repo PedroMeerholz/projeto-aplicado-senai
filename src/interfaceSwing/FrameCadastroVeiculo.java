@@ -12,7 +12,7 @@ import operacoes.GeraID;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CadastroVeiculo extends JFrame {
+public class FrameCadastroVeiculo extends JFrame {
     private OperacoesCadastro operacoesCadastro = new OperacoesCadastro();
     private GeraID geraID = new GeraID();
     private String id;
@@ -22,7 +22,7 @@ public class CadastroVeiculo extends JFrame {
 	private JTextField txtFieldAutonomia;
     private JButton btnCadastrar;
 
-    public CadastroVeiculo() {
+    public FrameCadastroVeiculo() {
         super("Cadastrar Veículo");
         setSize(400, 400);
 

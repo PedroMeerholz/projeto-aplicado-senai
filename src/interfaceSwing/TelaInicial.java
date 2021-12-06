@@ -8,7 +8,7 @@ public class TelaInicial extends JFrame {
 
     public TelaInicial() {
         super();
-        setTitle("Início");
+        setTitle("Projeto Integrador - 2° Semestre");
         setSize(900, 700);
         menu();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

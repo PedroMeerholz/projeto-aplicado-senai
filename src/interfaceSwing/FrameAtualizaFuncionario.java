@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import operacoes.OperacoesAtualizacao;
 
-public class AtualizaFuncionario extends JFrame {
+public class FrameAtualizaFuncionario extends JFrame {
     private JTextField txtFieldId;
     private JTextField txtFieldNome;
 	private JTextField txtFieldNascimento;
@@ -26,7 +26,7 @@ public class AtualizaFuncionario extends JFrame {
     private JButton button;
     private OperacoesAtualizacao operacoesAtualizacao = new OperacoesAtualizacao();
 
-    public AtualizaFuncionario() {
+    public FrameAtualizaFuncionario() {
         super("Modificar Funcionário");
         setSize(400, 350);
         setLayout(null);

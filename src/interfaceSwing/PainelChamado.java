@@ -54,7 +54,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CadastroChamado();
+                new FrameCadastroChamado();
             }
         });
         adicionaBotao(button, "Cadastrar");
@@ -63,7 +63,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AtualizaChamado();
+                new FrameAtualizaChamado();
             }
         });
         adicionaBotao(button, "Modificar");
@@ -72,7 +72,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Exclusao();
+                new FrameExclusao();
             }
         });
         adicionaBotao(button, "Excluir");
@@ -81,7 +81,7 @@ public class PainelChamado extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultaChamado();
+                new FrameConsultaChamado();
             }
         });
         adicionaBotao(button, "Consultar");

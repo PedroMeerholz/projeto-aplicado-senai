@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import operacoes.OperacoesAtualizacao;
 
-public class AtualizaVeiculo extends JFrame {
+public class FrameAtualizaVeiculo extends JFrame {
     private JTextField txtFieldId;
     private JTextField txtFieldModelo;
     private JTextField txtFieldPlaca;
@@ -25,7 +25,7 @@ public class AtualizaVeiculo extends JFrame {
     private JButton button;
     private OperacoesAtualizacao operacoesAtualizacao = new OperacoesAtualizacao();
 
-    public AtualizaVeiculo() {
+    public FrameAtualizaVeiculo() {
         super("Modificar Funcionário");
         setSize(400, 350);
         setLayout(null);

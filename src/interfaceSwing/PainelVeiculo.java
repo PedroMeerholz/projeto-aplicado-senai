@@ -54,7 +54,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CadastroVeiculo();
+                new FrameCadastroVeiculo();
             }
         });
         adicionaBotao(button, "Cadastrar");
@@ -63,7 +63,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AtualizaVeiculo();
+                new FrameAtualizaVeiculo();
             }
         });
         adicionaBotao(button, "Modificar");
@@ -72,7 +72,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Exclusao();
+                new FrameExclusao();
             }
         });
         adicionaBotao(button, "Excluir");
@@ -81,7 +81,7 @@ public class PainelVeiculo extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultaVeiculo();
+                new FrameConsultaVeiculo();
             }
         });
         adicionaBotao(button, "Consultar");

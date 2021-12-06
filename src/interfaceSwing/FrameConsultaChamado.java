@@ -5,16 +5,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-import crud.CRUDFuncionario;
+import crud.CRUDChamado;
 
-public class ConsultaFuncionario extends JFrame {
+public class FrameConsultaChamado extends JFrame {
     private JPanel panelTable;
     private JTable table;
-    private CRUDFuncionario crudFuncionario = new CRUDFuncionario();
+    private CRUDChamado crudChamado = new CRUDChamado();
 
-    public ConsultaFuncionario() {
+    public FrameConsultaChamado() {
         super();
-        setTitle("Consultar Funcionários");
+        setTitle("Consultar Chamados");
         setSize(600, 600);
         apresentaTabela();
         setVisible(true);
@@ -24,10 +24,10 @@ public class ConsultaFuncionario extends JFrame {
         panel.setBorder(BorderFactory.createTitledBorder(tituloBorda));
         add(panel);
     }
-
-    private void apresentaTabela() {
+    
+    public void apresentaTabela() {
         this.panelTable = new JPanel();
-        adicionaPainel(panelTable, "Funcionários");
-        crudFuncionario.adicionaTabelaFuncionario(panelTable, table);
+        adicionaPainel(panelTable, "Chamados");
+        crudChamado.adicionaTabelaChamado(panelTable, table);
     }
 }

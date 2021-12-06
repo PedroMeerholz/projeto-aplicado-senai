@@ -11,13 +11,13 @@ import javax.swing.JTextField;
 
 import operacoes.OperacoesAtualizacao;
 
-public class AtualizaChamado extends JFrame {
+public class FrameAtualizaChamado extends JFrame {
     private JTextField txtFieldId;
 	private JTextField txtFieldDistancia;
     private JButton button;
     private OperacoesAtualizacao operacoesAtualizacao = new OperacoesAtualizacao();
 
-    public AtualizaChamado() {
+    public FrameAtualizaChamado() {
         super("Modificar Chamado");
         setSize(400, 350);
         setLayout(null);

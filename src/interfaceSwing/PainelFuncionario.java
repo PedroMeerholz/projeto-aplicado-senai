@@ -55,7 +55,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CadastroFuncionario();
+                new FrameCadastroFuncionario();
             }
         });
         adicionaBotao(button, "Cadastrar");
@@ -64,7 +64,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AtualizaFuncionario();
+                new FrameAtualizaFuncionario();
             }
         });
         adicionaBotao(button, "Modificar");
@@ -73,7 +73,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Exclusao();
+                new FrameExclusao();
             }
         });
         adicionaBotao(button, "Excluir");
@@ -82,7 +82,7 @@ public class PainelFuncionario extends JPanel {
         this.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ConsultaFuncionario();
+                new FrameConsultaFuncionario();
             }
         });
         adicionaBotao(button, "Consultar");
