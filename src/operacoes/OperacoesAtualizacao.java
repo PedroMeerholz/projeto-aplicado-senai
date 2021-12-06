@@ -51,7 +51,9 @@ public class OperacoesAtualizacao {
     }
 
     public void atualizaStatusChamado(int id, boolean status) {
-        crudChamado.updateStatus(id, status);
+        crudChamado.updateStatus(id, false);
+        crudFuncionario.updateStatus(crudChamado.getFuncionarioAlocado(id), true);
+        crudVeiculo.updateStatus(crudChamado.getVeiculoAlocado(id), true);
     }
 
     public void atualizaDistanciaChamado(int id, float distancia) {

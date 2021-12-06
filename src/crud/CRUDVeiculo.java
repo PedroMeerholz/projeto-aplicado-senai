@@ -16,7 +16,7 @@ public class CRUDVeiculo extends Conexao {
     }
 
     // Create
-    public boolean create(Veiculo veiculo) {
+    public void create(Veiculo veiculo) {
         sql = "INSERT INTO veiculo (id_veiculo, modelo, placa, ano, autonomia, status) VALUES (?, ?, ?, ?, ?, ?)";
         try{
             execucaoSQL = conexao.prepareStatement(sql);
@@ -27,14 +27,10 @@ public class CRUDVeiculo extends Conexao {
             execucaoSQL.setDouble(5, veiculo.getAutonomia());
             execucaoSQL.setBoolean(6, veiculo.getStatus());
             execucaoSQL.execute();
-            
-            return true;
         } catch(SQLException e) {
             e.printStackTrace();
-
-            return false;
-        } // Fim try/catch
-    } // Fim método create
+        }
+    }
 
     // Read
     public void adicionaTabelaVeiculo(JPanel panel, JTable table) {
@@ -67,7 +63,7 @@ public class CRUDVeiculo extends Conexao {
         } catch(SQLException erro) {
             erro.printStackTrace();
         }
-    } // Fim método read
+    }
 
     public float readAutonomia(int id) {
         sql = "SELECT * FROM veiculo WHERE id_veiculo=?";
@@ -86,8 +82,8 @@ public class CRUDVeiculo extends Conexao {
             e.printStackTrace();
 
             return -1;
-        } // Fim método try/catch
-    } // Fim método readOnly
+        }
+    }
 
     public int getNumeroDeVeiculos() {
         sql = "SELECT * FROM veiculo";
@@ -147,98 +143,75 @@ public class CRUDVeiculo extends Conexao {
     }
 
     // Update
-    public boolean updateModelo(int id, String modelo) {
+    public void updateModelo(int id, String modelo) {
         sql = "UPDATE veiculo SET modelo=? WHERE id_veiculo=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setString(1, modelo);
             execucaoSQL.setInt(2, id);
             execucaoSQL.execute();
-            
-            return true;
         } catch(SQLException e) {
             e.printStackTrace();
-            
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateModelo
+        }
+    }
     
-    public boolean updatePlaca(int id, String placa) {
+    public void updatePlaca(int id, String placa) {
         sql = "UPDATE veiculo SET placa=? WHERE id_veiculo=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setString(1, placa);
             execucaoSQL.setInt(2, id);
             execucaoSQL.execute();
-
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            
-            return false;
-        } // Fim método try/catch
-    } // Fim método updatePlaca
+        }
+    }
     
-    public boolean updateAno(int id, String ano) {
+    public void updateAno(int id, String ano) {
         sql = "UPDATE veiculo SET ano=? WHERE id_veiculo=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setString(1, ano);
             execucaoSQL.setInt(2, id);
             execucaoSQL.executeUpdate();
-
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateAno
+        }
+    }
     
-    public boolean updateAutonomia(int id, double autonomia) {
+    public void updateAutonomia(int id, double autonomia) {
         sql = "UPDATE veiculo SET autonomia=? WHERE id_veiculo=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setDouble(1, autonomia);
             execucaoSQL.setInt(2, id);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException e) {
             e.printStackTrace();
-
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateAutonomia
+        }
+    }
     
-    public boolean updateStatus(int id, boolean status) {
+    public void updateStatus(int id, boolean status) {
         sql = "UPDATE veiculo SET status=? WHERE id_veiculo=?";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setBoolean(1, status);
             execucaoSQL.setInt(2, id);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException e) {
             e.printStackTrace();
-
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateStatus
+        }
+    }
 
     // Delete
-    public boolean delete(int id) {
+    public void delete(int id) {
         sql = "DELETE FROM veiculo WHERE id_veiculo=?"; 
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.setInt(1, id);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException e) {
             e.printStackTrace();
-            return false;
-        } // Fim método try/catch
-    } // Fim método delete
+        }
+    }
 }

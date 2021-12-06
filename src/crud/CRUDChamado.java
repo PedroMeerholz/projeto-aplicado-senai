@@ -16,7 +16,7 @@ public class CRUDChamado extends Conexao {
     }
 
     // Create
-    public boolean create(Chamado chamado) {
+    public void create(Chamado chamado) {
         sql = "INSERT INTO chamado (id_chamado, status, data_chamado, funcionario, veiculo, distancia) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
@@ -27,14 +27,10 @@ public class CRUDChamado extends Conexao {
             execucaoSQL.setInt(5, chamado.getIdVeiculoAlocado());
             execucaoSQL.setDouble(6, chamado.getDistancia());
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException e) {
             e.printStackTrace();
-
-            return false;
-        } // Fim try/catch
-    } // Fim método create
+        }
+    }
     
     // Read
     public void adicionaTabelaChamado(JPanel panel, JTable table) {
@@ -68,7 +64,7 @@ public class CRUDChamado extends Conexao {
         } catch(SQLException erro) {
             erro.printStackTrace();
         }
-    } // Fim método read
+    }
 
     public int getNumeroDeChamados() {
         sql = "SELECT * FROM chamado";
@@ -203,63 +199,82 @@ public class CRUDChamado extends Conexao {
         return veiculo;
     }
 
+    public int getFuncionarioAlocado(int id_chamado) {
+        sql = "SELECT funcionario FROM chamado WHERE id_chamado=?";
+        int funcionario = 0;
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setInt(1, id_chamado);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                funcionario = resultado.getInt("funcionario");
+            }
+
+            return funcionario;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int getVeiculoAlocado(int id_chamado) {
+        sql = "SELECT veiculo FROM chamado WHERE id_chamado=?";
+        int veiculo = 0;
+        try {
+            execucaoSQL = conexao.prepareStatement(sql);
+            execucaoSQL.setInt(1, id_chamado);
+            ResultSet resultado = execucaoSQL.executeQuery();
+            while(resultado.next()) {
+                veiculo = resultado.getInt("veiculo");
+            }
+
+            return veiculo;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 
     // Update
-    public boolean updateStatus(int id, boolean status){
+    public void updateStatus(int id, boolean status){
         sql = "UPDATE chamado SET status='"+status+"' WHERE id_chamado='"+id+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException erro) {
             erro.printStackTrace();
-
-            return false;
-        } // Fim método try/catch
+        }
     } 
 
-    public boolean updateFuncionarioAlocado(int idChamado, int idFuncionario) {
+    public void updateFuncionarioAlocado(int idChamado, int idFuncionario) {
         sql = "UPDATE chamado SET funcionario='"+idFuncionario+"' WHERE id_chamado='"+idChamado+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException erro) {
             erro.printStackTrace();
+        }
+    }
 
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateFuncionarioAlocado
-
-    public boolean updateVeiculoAlocado(int idChamado, int idVeiculo) {
+    public void updateVeiculoAlocado(int idChamado, int idVeiculo) {
         sql = "UPDATE chamado SET veiculo='"+idVeiculo+"' WHERE id_chamado='"+idChamado+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException erro) {
             erro.printStackTrace();
+        }
+    }
 
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateVeiculoAlocado
-
-    public boolean updateDistancia(int id, float distancia) {
+    public void updateDistancia(int id, float distancia) {
         sql = "UPDATE chamado SET distancia='"+distancia+"' WHERE id_chamado='"+id+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.execute();
-
-            return true;
         } catch(SQLException erro) {
             erro.printStackTrace();
-
-            return false;
-        } // Fim método try/catch
-    } // Fim método updateDistancia
+        }
+    }
 
     public void updateCarbono(int id, double distancia, float autonomia) {
         double consumoGasolina = distancia / autonomia;
@@ -274,17 +289,13 @@ public class CRUDChamado extends Conexao {
     }
 
     // Delete
-    public boolean delete(int id) {
+    public void delete(int id) {
         sql = "DELETE FROM chamado WHERE id_chamado='"+id+"'";
         try {
             execucaoSQL = conexao.prepareStatement(sql);
             execucaoSQL.execute();
-
-            return false;
         } catch(SQLException erro) {
             erro.printStackTrace();
-
-            return false;
         }
     }
 } // Fim classe CRUDChamado
