@@ -14,7 +14,7 @@ public class Conexao {
             Class.forName("org.postgresql.Driver"); // Realização do registro do Driver
             String url = "jdbc:postgresql://localhost:5432/projeto_aplicado";
             String usuario = "postgres";
-            String senha = "89601311";
+            String senha = "senai";
             this.conexao = DriverManager.getConnection(url, usuario, senha); // Cria a conexão com o DB
         } catch (ClassNotFoundException e) {
             // Erro relacionado ao Driver
