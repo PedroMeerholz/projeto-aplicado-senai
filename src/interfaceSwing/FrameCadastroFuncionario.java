@@ -73,10 +73,6 @@ public class FrameCadastroFuncionario extends JFrame {
         add(componente);
         componente.setBounds(x, y, largura, 20);
     }
-
-    private void enviaInformaçoesParaCadastro(String nome, Date nascimento, String cpf, String cargo) {
-		operacoesCadastro.cadastroFuncionario(nome, nascimento, cpf, cargo);
-	}
    
     private void criaFormulario() {
         setLayout(null);
@@ -110,7 +106,7 @@ public class FrameCadastroFuncionario extends JFrame {
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                enviaInformaçoesParaCadastro(getNome(), getNascimento(), getCpf(), getCargo());
+		operacoesCadastro.cadastroFuncionario(getNome(), getNascimento(), getCpf(), getCargo());
             }
         });
         adicionarComponente(btnCadastrar, 80, 250, 220);
