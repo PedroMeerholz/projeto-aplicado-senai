@@ -63,10 +63,6 @@ public class FrameCadastroChamado extends JFrame {
         componente.setBounds(x, y, largura, 20);
     }
 
-	public void enviaInformaçoesParaCadastro(int idFuncionario, int idVeiculo) {
-		operacoesCadastro.cadastroChamado(idFuncionario, idVeiculo);
-	}
-
     private void criaFormulario() {
         setLayout(null);
 
@@ -92,7 +88,7 @@ public class FrameCadastroChamado extends JFrame {
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                enviaInformaçoesParaCadastro(getIdFuncionario(), getIdVeiculo());
+                operacoesCadastro.cadastroChamado(getIdFuncionario(), getIdVeiculo());
             }
         });
         adicionarComponente(btnCadastrar, 100, 230, 155);
